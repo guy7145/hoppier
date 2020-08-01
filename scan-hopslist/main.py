@@ -30,5 +30,5 @@ def fetch_data(nb_processes=1):
 
 
 if __name__ == '__main__':
-    fetch_data(1)
+    fetch_data(8)
     print('done.')

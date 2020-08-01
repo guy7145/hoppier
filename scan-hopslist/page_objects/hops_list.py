@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from bs4 import BeautifulSoup
 
-from page_objects.bs_utils import get_first_child, format_text
+from page_objects.bs_utils import first_child, format_text
 from page_objects.page_object import PageObject
 
 HOPS_LIST_URL = 'http://www.hopslist.com/hops'
@@ -37,8 +37,8 @@ class HopsListPage(PageObject):
     @staticmethod
     def __get_hops_from_column_page_element(page_element: BeautifulSoup):
         for entry in page_element.find_all(**hops_list_entry_attributes):
-            entry = get_first_child(entry)
-            yield get_first_child(entry), entry.get('href')
+            entry = first_child(entry)
+            yield first_child(entry), entry.get('href')
 
     def __init__(self):
         super().__init__(HOPS_LIST_URL)

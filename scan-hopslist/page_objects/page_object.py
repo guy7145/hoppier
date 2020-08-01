@@ -6,7 +6,7 @@ class PageObject:
     def __init__(self, url):
         self.__url = url
         self._response = self.__fetch()
-        self.page_source = bs4.BeautifulSoup(self._response.text.lower(), features='html5lib')
+        self.page_source = bs4.BeautifulSoup(self._response.text, features='html5lib')
 
     def __fetch(self):
         response = requests.get(self.__url)
