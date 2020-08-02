@@ -1,0 +1,8 @@
+.axis {
+    width: 100%;
+    background-color: #61dafb;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+}

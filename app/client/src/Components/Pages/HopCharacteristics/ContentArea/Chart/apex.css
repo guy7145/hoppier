@@ -1,0 +1,6 @@
+.apexcharts-tooltip {
+    background: rgba(18, 104, 114, 0.75) !important;
+    color: rgba(136, 249, 212, 0.7);
+    padding: 10px;
+    border-style: none;
+}

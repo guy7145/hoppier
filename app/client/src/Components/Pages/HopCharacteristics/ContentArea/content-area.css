@@ -1,0 +1,32 @@
+.green-scale-1-rgba { color: rgba(3, 23, 39, 1); }
+.green-scale-2-rgba { color: rgba(18, 104, 114, 1); }
+.green-scale-3-rgba { color: rgba(11, 135, 125, 1); }
+.green-scale-4-rgba { color: rgba(24, 194, 156, 1); }
+.green-scale-5-rgba { color: rgba(136, 249, 212, 1); }
+
+
+.contentContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row;
+    align-content: center;
+    justify-content: flex-start;
+}
+
+.descriptionSidebar {
+    height: 100%;
+    width: 30%;
+    margin: 0;
+    padding: 20px 20px 0 20px;
+    border: 1px solid;
+    border-color: transparent rgba(136, 249, 212, 0.25) transparent transparent;
+    background-color: rgba(18, 104, 114, 0.2);
+    box-shadow: 0 0 30px 0 rgba(3, 23, 39, 0.5);
+    box-sizing: border-box;
+}
+
+.chartArea {
+    width: 100%;
+    height: 100%;
+}
