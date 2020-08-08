@@ -3,7 +3,8 @@ import HopContentArea from "./ContentArea/HopContentArea";
 import Axis from "./Axis/Axis";
 import styles from './style.css';
 import {getAllData} from "../../../Backend/data.js";
-
+import {hopChemicals} from "../../../KnowledgeBase/HopComposition";
+import _ from 'lodash';
 
 export default function HopCharacteristics() {
     const [isLoading, setIsLoading] = useState(true);
@@ -12,7 +13,12 @@ export default function HopCharacteristics() {
 
     if (isLoading) {
         getAllData().then((result) => {
-            setData(Object.values(result));
+            setData(Object
+                .values(result)
+                .filter(hop => _.every(hopChemicals.map(c => hop[c] && hop[c] !== '')))
+                .splice(0, 10)
+            );
+            console.log(`showing ${data.length} different hops`);
             setHop(data[0]);
             setIsLoading(false);
         });

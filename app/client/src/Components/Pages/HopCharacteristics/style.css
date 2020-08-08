@@ -23,6 +23,5 @@
 
 .axisArea {
     width: 100%;
-    position: absolute;
-    bottom: 0;
+    height: 4em;
 }
