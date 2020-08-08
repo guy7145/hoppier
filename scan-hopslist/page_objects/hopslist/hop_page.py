@@ -1,6 +1,6 @@
-from page_objects.bs_utils import inline_links, first_child, format_text, to_float_list
-from page_objects.consts import PERCENTILE_KEYS, TOTAL_OIL_KEY
-from page_objects.page_object import PageObject
+from page_objects.hopslist.bs_utils import inline_links, first_child, format_text, to_float_list
+from page_objects.hopslist.consts import PERCENTILE_KEYS, TOTAL_OIL_KEY
+from page_objects.hopslist.page_object import PageObject
 
 hop_title_attributes = {
     'name': 'h1',

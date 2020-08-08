@@ -2,8 +2,8 @@ from dataclasses import dataclass
 
 from bs4 import BeautifulSoup
 
-from page_objects.bs_utils import first_child, format_text
-from page_objects.page_object import PageObject
+from page_objects.hopslist.bs_utils import first_child, format_text
+from page_objects.hopslist.page_object import PageObject
 
 HOPS_LIST_URL = 'http://www.hopslist.com/hops'
 
