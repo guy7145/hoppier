@@ -15,6 +15,21 @@ const apexOptions = {
         toolbar: {
             show: false,
         },
+        animations: {
+            enabled: true,
+            easing: 'easein',
+            speed: 200,
+            animateGradually: {
+                enabled: false,
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 200,
+                animateGradually: {
+                    enabled: false,
+                },
+            }
+        },
     },
     style: {
         fontSize: '20px'

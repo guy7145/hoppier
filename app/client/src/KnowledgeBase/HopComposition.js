@@ -1,9 +1,10 @@
 export const hopChemicals = [
-    'alpha acid',
-    'beta acid',
-    'co-humulone',
+    'total oil',
     'myrcene oil',
+    'co-humulone',
     'humulene oil',
     'caryophyllene oil',
     'farnesene oil',
+    'alpha acid',
+    'beta acid',
 ];
