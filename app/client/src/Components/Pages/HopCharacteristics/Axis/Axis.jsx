@@ -1,8 +1,29 @@
 import React from "react";
 import styles from './axis.css';
+import Slider from '@material-ui/core/Slider';
 
-export default function Axis({allHops, setHop}) {
+
+export default function Axis({allHops, setHop, selectedHopIndex}) {
+    function getHopName(value) {
+        return allHops[value].title;
+    }
+
+    function setSelected(ev, value) {
+        setHop(allHops[value]);
+    }
     return <div className={styles.axis}>
-        {allHops.map(hop => <button onClick={() => setHop(hop)}>{hop.title}</button> )}
+        <div style={{width: '600px'}}>
+            <Slider
+                defaultValue={selectedHopIndex}
+                getAriaValueText={getHopName}
+                step={1}
+                marks
+                min={1}
+                max={30}
+                valueLabelDisplay="auto"
+                track={false}
+                onChangeCommitted={setSelected}
+            />
+        </div>
     </div>
 }

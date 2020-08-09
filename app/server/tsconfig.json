@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "baseUrl": "./",
+    "outDir": "dist",
+    "removeComments": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "target": "es6",
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "@shared/*": ["../shared/src/*"]
+    }
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "./src/dist/"
+  ],
+  "references": [
+    {
+      "path": "../shared"
+    }
+  ]
+}

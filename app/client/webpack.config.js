@@ -5,7 +5,7 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const config = {
   entry: [
     'react-hot-loader/patch',
-    './src/index.js'
+    './src/index.ts'
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),

@@ -3,7 +3,7 @@ import ReactApexChart from "react-apexcharts";
 import styles from './chart.css'
 import './apex.css'
 import _ from 'lodash';
-import {hopChemicals} from "../../../../../KnowledgeBase/HopComposition";
+import {hopChemicals} from "../../../../../../../shared/src/KnowledgeBase/HopComposition";
 
 
 const apexOptions = {
