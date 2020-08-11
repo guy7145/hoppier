@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "baseUrl": "./",
-    "outDir": "./dist",
+    "baseUrl": ".",
+    "outDir": "./dist/",
     "removeComments": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "noImplicitAny": false,
-    "target": "es6",
+    "target": "es5",
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "jsx": "react",
     "types": [
       "node"
     ],
@@ -23,7 +24,8 @@
     }
   },
   "include": [
-    "./src/**/*.ts"
+    "./src/**/*",
+    "./src/declarations.d.ts"
   ],
   "exclude": [
     "./dist/"

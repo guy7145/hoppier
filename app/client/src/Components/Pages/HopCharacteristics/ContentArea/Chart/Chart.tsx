@@ -1,7 +1,7 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
-import styles from './chart.css'
-import './apex.css'
+import styles from './chart.less'
+import './apex.less'
 import _ from 'lodash';
 import {hopChemicals} from "../../../../../../../shared/src/KnowledgeBase/HopComposition";
 

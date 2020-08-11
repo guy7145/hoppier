@@ -5,7 +5,7 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const config = {
   entry: [
     'react-hot-loader/patch',
-    './src/index.ts'
+    './src/index.tsx'
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -13,6 +13,15 @@ const config = {
   },
   module: {
     rules: [
+      {
+        test: /\.ts(x?)$/,
+        exclude: '/node_modules/',
+        use: [
+          {
+            loader: 'ts-loader',
+          },
+        ],
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -26,14 +35,6 @@ const config = {
             '@babel/transform-runtime'
           ]
         }
-      },
-      {
-        test: /\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'less-loader'
-        ]
       },
       {
         test: /\.svg$/,
@@ -51,7 +52,40 @@ const config = {
         ]
       },
       {
+        test: /\.less$/,
+        exclude: /\.global\.less$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
+            },
+          },
+          'less-loader',
+        ],
+      },
+      {
+        test: /\.global\.less$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              javascriptEnabled: true,
+              modifyVars: {
+                // hack: `true; @import '${path.join(__dirname, './src/theme/antdPalette.less')}'`,
+              },
+            },
+          },
+        ],
+      },
+      {
         test: /\.css$/,
+        exclude: /\.global\.css$/,
         use: [
           'style-loader',
           {
@@ -62,13 +96,28 @@ const config = {
             }
           }
         ]
+      },
+      {
+        test: /\.global\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: false
+            }
+          }
+        ]
       }
     ]
   },
   resolve: {
     extensions: [
       '.js',
-      '.jsx'
+      '.jsx',
+      '.ts',
+      '.tsx'
     ],
     alias: {
       'react-dom': '@hot-loader/react-dom'

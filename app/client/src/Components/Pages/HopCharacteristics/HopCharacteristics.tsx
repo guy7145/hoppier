@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import HopContentArea from "./ContentArea/HopContentArea";
 import Axis from "./Axis/Axis";
-import styles from './hop-characteristics.css';
+import styles from './hop-characteristics.less';
 import Hops from '../../../Backend/data';
 
 
@@ -10,7 +10,7 @@ export default function HopCharacteristics() {
 
     return <div className={styles.hopCharacteristics}>
         <div className={styles.contentArea}>
-            <HopContentArea hop={hop}>change hop</HopContentArea>
+            <HopContentArea hop={hop}/>
         </div>
         <div className={styles.axisArea}>
             <Axis setHop={setHop} allHops={Hops.hopsList} selectedHopIndex={5}/>

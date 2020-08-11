@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './axis.css';
+import styles from './axis.less';
 import Slider from '@material-ui/core/Slider';
 
 

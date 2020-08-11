@@ -5,14 +5,13 @@ import DataLoader from "./Components/DataLoader";
 import Hops from './Backend/data';
 import Loading from "./Components/Loading";
 
-class App extends React.Component {
-  render() {
+
+function App({name}: {name: String}) {
     return (
-        <DataLoader asyncDataFetcher={Hops.popluateData} LoadingComponent={<Loading/>}>
-          <HopCharacteristics/>
+        <DataLoader asyncDataFetcher={Hops.populateData} LoadingComponent={<Loading/>}>
+            <HopCharacteristics/>
         </DataLoader>
     );
-  }
 }
 
 export default hot(App);

@@ -2,10 +2,11 @@ import React from "react";
 import Description from "./Description/Description";
 import Chart from "./Chart/Chart";
 import Title from "./Title/Title";
-import styles from './content-area.css'
+import styles from './content-area.less'
+import {Hop} from "@shared/KnowledgeBase/types";
 
 
-export default function HopContentArea({hop}) {
+export default function HopContentArea({hop}: {hop: Hop}) {
     return <div className={styles.contentContainer}>
         <div className={styles.descriptionSidebar}>
             <Title hop={hop}/>
