@@ -1,5 +1,5 @@
 from page_objects.hopslist.bs_utils import inline_links, first_child, format_text, to_float_list
-from page_objects.hopslist.consts import PERCENTILE_KEYS, TOTAL_OIL_KEY
+from page_objects.hopslist.consts import PERCENTILE_KEYS, TOTAL_OIL_KEY, SUBS_KEY, HOPSLIST_STYLES_KEY, STYLES_KEY
 from page_objects.hopslist.page_object import PageObject
 
 hop_title_attributes = {
@@ -43,13 +43,25 @@ class HopPage(PageObject):
 
     @staticmethod
     def parse_hop_characteristics(characteristics):
+        def update(key, transform):
+            characteristics[key] = transform(characteristics.get(key, ''))
+
+        def change_key(old_key, new_key):
+            characteristics[new_key] = characteristics[old_key]
+            del characteristics[old_key]
+
         for key in PERCENTILE_KEYS:
-            characteristics[key] = HopPage.parse_percentile_or_numeric(characteristics[key])
+            update(key, HopPage.parse_percentile_or_numeric)
 
         if characteristics[TOTAL_OIL_KEY] != '':
-            characteristics[TOTAL_OIL_KEY] = HopPage.parse_percentile_or_numeric(
-                characteristics[TOTAL_OIL_KEY].replace('ml', ' ').split(' ')[0]  # first replace is a patch
+            update(
+                TOTAL_OIL_KEY,
+                lambda v: HopPage.parse_percentile_or_numeric(v.replace('ml', ' ').split(' ')[0])  # first replace is a patch
             )
+
+        change_key(HOPSLIST_STYLES_KEY, STYLES_KEY)
+        update(STYLES_KEY, lambda v: [s.strip() for s in v.split(',')])
+        update(SUBS_KEY, lambda v: [s.strip() for s in v.split(',')])
         return characteristics
 
     @staticmethod

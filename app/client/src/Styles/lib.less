@@ -1,0 +1,10 @@
+.colored(@text-color, @bg-neutral-color, @bg-fade: 30%) {
+  @bg-color: fade(mix(@text-color, @bg-neutral-color, 20%), @bg-fade);
+
+  color: @text-color;
+  background: @bg-color;
+
+  &:hover {
+    background-color: darken(@bg-color, 15%);
+  }
+}

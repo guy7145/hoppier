@@ -6,11 +6,17 @@ import Hops from '../../../Backend/data';
 
 
 export default function HopCharacteristics() {
-    const [hop, setHop] = useState(Hops.hopsList[5]);
+    const [hops, setHops] = useState([Hops.hopsList[0]]);
+    const setHop = hop => setHops([hop]);
+    const addHop = hop => setHops([...hops, hop]);
 
     return <div className={styles.hopCharacteristics}>
         <div className={styles.contentArea}>
-            <HopContentArea hop={hop}/>
+            <HopContentArea
+                hops={hops}
+                setHop={setHop}
+                addHop={addHop}
+            />
         </div>
         <div className={styles.axisArea}>
             <Axis setHop={setHop} allHops={Hops.hopsList} selectedHopIndex={5}/>

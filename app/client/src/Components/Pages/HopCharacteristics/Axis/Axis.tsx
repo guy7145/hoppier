@@ -18,11 +18,11 @@ export default function Axis({allHops, setHop, selectedHopIndex}) {
                 getAriaValueText={getHopName}
                 step={1}
                 marks
-                min={1}
-                max={30}
+                min={0}
+                max={allHops.length - 1}
                 valueLabelDisplay="auto"
                 track={false}
-                onChangeCommitted={setSelected}
+                onChange={setSelected}
             />
         </div>
     </div>

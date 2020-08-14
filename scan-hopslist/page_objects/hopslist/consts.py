@@ -9,3 +9,8 @@ PERCENTILE_KEYS = [
 ]
 
 TOTAL_OIL_KEY = 'total oil'
+
+HOPSLIST_STYLES_KEY = 'style guide'
+STYLES_KEY = 'styles'
+
+SUBS_KEY = 'substitutes'

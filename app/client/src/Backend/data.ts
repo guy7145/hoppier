@@ -1,14 +1,14 @@
 import Axios from "axios";
 import env from '../Envs/currentEnv';
-import {Hop} from "@shared/KnowledgeBase/types";
+import {Hop, HopJson} from "@shared/KnowledgeBase/types";
 const backendUrl = env.backendUrl;
 
 
-async function fetchHop(hopName): Promise<Hop> {
+async function fetchHop(hopName): Promise<HopJson> {
     return (await Axios.get(`${backendUrl}/data/hop/${hopName}`)).data;
 }
 
-async function fetchAllHops(): Promise<Array<Hop>> {
+async function fetchAllHops(): Promise<{[key: string]: HopJson}> {
     return (await Axios.get(`${backendUrl}/data/all-hops`)).data;
 }
 
@@ -26,7 +26,15 @@ class HopsData {
     }
 
     async populateData() {
-        this.hopsList = await fetchAllHops();
+        const hopsObj = await fetchAllHops();
+
+        const hopIndices = {};
+        Object.keys(hopsObj).forEach((hopName, index) => hopIndices[hopName] = index);
+
+        this.hopsList = Object.values(hopsObj);
+        this.hopsList.forEach((hop) => {
+           hop.substitutes = hop.substitutes.map(hopName => this.hopsList[hopIndices[String(hopName)]]);
+        });
     }
 }
 

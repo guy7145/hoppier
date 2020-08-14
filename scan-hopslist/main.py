@@ -52,6 +52,6 @@ def export_data(output_path):
 
 
 if __name__ == '__main__':
-    # fetch_data(8)
-    export_data('../data.json')
+    fetch_data(8)
+    export_data('../app/server/data.json')
     print('done.')
