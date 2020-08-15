@@ -1,5 +1,5 @@
 import React from "react";
-import {Hop} from "@shared/KnowledgeBase/types";
+import {Hop} from "@shared/types/hop";
 import Description from "./Description/Description";
 import styles from './hop-info.less';
 import Country from "./Country/Country";

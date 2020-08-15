@@ -1,6 +1,6 @@
 import Axios from "axios";
 import env from '../Envs/currentEnv';
-import {Hop, HopJson} from "@shared/KnowledgeBase/types";
+import {Hop, HopJson} from "@shared/types/hop";
 const backendUrl = env.backendUrl;
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "./styles.global.less";
+import "./Styles/styles.global.less";
 
 
 const mountNode = document.getElementById("app");

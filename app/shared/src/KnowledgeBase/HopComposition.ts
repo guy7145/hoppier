@@ -1,11 +1,11 @@
 import _ from "lodash";
-import {Hop} from "./types";
+import {Hop} from "../types/hop";
 
 
 const MISSING_PROPERTY = '?';
 
 
-export const hopChemicals = [
+export const hopCompounds = [
     'total oil',
     'myrcene oil',
     'co-humulone',
@@ -17,7 +17,7 @@ export const hopChemicals = [
 ];
 
 function isHopMissingData(hop: Hop): Boolean {
-    return !_.every(hopChemicals.map(c => hop[c] && hop[c] !== '' && hop[c] !== MISSING_PROPERTY))
+    return !_.every(hopCompounds.map(c => hop[c] && hop[c] !== '' && hop[c] !== MISSING_PROPERTY))
 }
 
 export function filterHopsWithMissingData(hopsList: Array<Hop>): Array<Hop> {

@@ -9,6 +9,7 @@ export default function HopCharacteristics() {
     const [hops, setHops] = useState([Hops.hopsList[0]]);
     const setHop = hop => setHops([hop]);
     const addHop = hop => setHops([...hops, hop]);
+    const removeHop = hop => setHops(hops.filter(other => other !== hop));
 
     return <div className={styles.hopCharacteristics}>
         <div className={styles.contentArea}>
@@ -16,6 +17,7 @@ export default function HopCharacteristics() {
                 hops={hops}
                 setHop={setHop}
                 addHop={addHop}
+                removeHop={removeHop}
             />
         </div>
         <div className={styles.axisArea}>

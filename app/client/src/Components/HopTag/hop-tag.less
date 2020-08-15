@@ -1,0 +1,51 @@
+@import '../../Styles/lib';
+@import '../../Styles/theme';
+
+.colored-tag() {
+  .colored(@text-color, @secondary-0, 80%, 10%);
+}
+
+.hopTag {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: fit-content;
+  height: fit-content;
+}
+
+.hopName {
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 1em;
+  padding: 1em;
+  margin: 0.5em;
+
+  width: fit-content;
+  height: fit-content;
+  white-space: nowrap;
+
+  border: 1px solid fade(@primary-1, 10%);
+  box-shadow: 2px 2px 4px 0 fade(darken(@secondary-0, 5%), 15%);
+  .colored-tag();
+}
+
+.removeHopButton {
+  .full-size-center();
+  z-index: 2;
+  cursor: pointer;
+  border-radius: 1em;
+
+  .appear-on-hover();
+
+  .hopLinkChoose {
+    .full-size-center();
+    width: 70%;
+    .colored-tag();
+  }
+}

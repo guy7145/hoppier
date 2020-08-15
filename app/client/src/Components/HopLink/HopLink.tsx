@@ -1,5 +1,5 @@
 import React from "react";
-import {Hop} from "@shared/KnowledgeBase/types";
+import {Hop} from "@shared/types/hop";
 import styles from './hop-link.less';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus, faHandPointer} from "@fortawesome/free-solid-svg-icons";

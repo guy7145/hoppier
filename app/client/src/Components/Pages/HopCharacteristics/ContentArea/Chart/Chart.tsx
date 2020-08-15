@@ -3,7 +3,7 @@ import ReactApexChart from "react-apexcharts";
 import styles from './chart.less'
 import './apex.global.less'
 import _ from 'lodash';
-import {hopChemicals} from "../../../../../../../shared/src/KnowledgeBase/HopComposition";
+import {hopCompounds} from "../../../../../../../shared/src/KnowledgeBase/HopComposition";
 
 
 const apexOptions = {
@@ -36,9 +36,14 @@ const apexOptions = {
     },
     legend: {
         show: true,
+        showForSingleSeries: false,
+        position: 'left',
         labels: {
             colors: 'rgba(188, 245, 232, 0.9)',
+            useSeriesColors: true
         },
+        horizontalAlign: 'left',
+        floating: true,
     },
     dataLabels: {
         enabled: false,
@@ -63,7 +68,7 @@ const apexOptions = {
         size: 4,
     },
     xaxis: {
-        categories: hopChemicals,
+        categories: hopCompounds,
         style: {
             fontSize: '20px',
         },
@@ -98,7 +103,7 @@ function hopValues(hop, keys) {
 function hopToMinMax(hop) {
     const hopMin = {...hop, title: `${hop.title} (min)`};
     const hopMax = {...hop, title: `${hop.title} (max)`};
-    hopChemicals.forEach((c) => {
+    hopCompounds.forEach((c) => {
         const value = hop[c];
         if (Array.isArray(value) && value.length > 1) {
             hopMin[c] = _.min(value);
@@ -115,9 +120,9 @@ export default function Chart({hopsList}) {
         hopsList = hopToMinMax(hopsList[0]);
     }
 
-    const series = hopsList.map(hop => ({name: hop.title, data: hopValues(hop, hopChemicals)}));
+    const series = hopsList.map(hop => ({name: hop.title, data: hopValues(hop, hopCompounds)}));
 
     return <div id='chart' className={styles.chartContainer}>
-        <ReactApexChart options={apexOptions} series={series} type="radar" height={'90%'} width={'100%'}/>
+        <ReactApexChart options={apexOptions} series={series} type="radar" height={'100%'} width={'100%'}/>
     </div>;
 }
