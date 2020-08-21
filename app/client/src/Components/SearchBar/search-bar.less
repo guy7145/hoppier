@@ -1,0 +1,58 @@
+@import '../../Styles/theme';
+@import '../../Styles/lib';
+
+@search-bg-color: @primary-4;
+
+
+.searchContainer {
+  height: fit-content;
+  width: 100%;
+
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.5em 0;
+  margin: 0.5em 0;
+
+  border-radius: 1em;
+  background-color: @primary-4;
+  .colored(@text-color, @search-bg-color, 10%, 100%);
+}
+
+.searchIconContainer {
+  .center();
+  padding: 0 0.25em 0 0.5em;
+}
+
+.searchIcon {
+}
+
+.searchInputContainer {
+  .full-size();
+  width: border-box;
+  margin-right: 0.5em;
+}
+
+.searchInput {
+  .full-size();
+  font-size: 16px;
+  overflow: hidden;
+  margin-right: 0.5em;
+  box-sizing: border-box;
+}
+
+.autocompleteSuggestions {
+  position: absolute;
+  width: 100%;
+  max-height: 10em;
+  overflow: hidden;
+
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  background: @primary-4;
+  border-radius: 0 0 1em 1em;
+}

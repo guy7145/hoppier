@@ -4,8 +4,6 @@ import Title from "./Title/Title";
 import styles from './content-area.less'
 import {Hop} from "@shared/types/hop";
 import HopInfo from "./HopInfo/HopInfo";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import HopTag from "../../../HopTag/HopTag";
 
 
@@ -16,17 +14,13 @@ export default function HopContentArea({hops, setHop, addHop, removeHop}: {
         removeHop: (Hop) => void,
     }) {
     return <div className={styles.contentContainer}>
-        {
-            hops.length === 1 && <div className={styles.descriptionSidebar}>
-                <Title hop={hops[0]}/>
-                <HopInfo hop={hops[0]} setHop={setHop} addHop={addHop}/>
-            </div>
-        }
-        {
-            hops.length > 1 && <div className={styles.titlesContainer}>
-                {hops.map(h => <HopTag hop={h} onRemove={() => removeHop(h)}/>)}
-            </div>
-        }
+        <div className={[styles.descriptionSidebar, hops.length === 1 ? styles.activated : ''].join(' ')}>
+            <Title hop={hops[0]}/>
+            <HopInfo hop={hops[0]} setHop={setHop} addHop={addHop}/>
+        </div>
+        <div className={[styles.titlesContainer, hops.length > 1 ? styles.activated : ''].join(' ')}>
+            {hops.map(h => <HopTag hop={h} onClick={() => setHop(h)} onRemove={() => removeHop(h)}/>)}
+        </div>
         <div className={styles.chartArea}>
             <Chart hopsList={hops}/>
         </div>

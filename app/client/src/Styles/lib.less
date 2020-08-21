@@ -1,3 +1,6 @@
+@import './theme.less';
+
+
 .colored(@text-color, @bg-neutral-color, @bg-text-color-mix: 30%, @bg-opacity: 30%) {
   @bg-color: fade(mix(@text-color, @bg-neutral-color, @bg-text-color-mix), @bg-opacity);
 
@@ -11,12 +14,20 @@
   }
 }
 
-.full-size-center() {
+.full-size() {
   height: 100%;
   width: 100%;
+}
+
+.center() {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.full-size-center() {
+  .full-size();
+  .center();
 }
 
 .appear-on-hover(@fade-time: .2s) {
@@ -25,5 +36,21 @@
 
   &:hover {
     opacity: 1;
+  }
+}
+
+.scrollbar(@color) {
+  ::-webkit-scrollbar {
+    width: 0.5em;
+  }
+
+  &:hover ::-webkit-scrollbar-track, &:hover ::-webkit-scrollbar-thumb {
+    background: fade(@color, 25%);
+  }
+
+  ::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {
+    transition: all .8s linear;
+    border-radius: 0.25em;
+    background: fade(@color, 5%);
   }
 }

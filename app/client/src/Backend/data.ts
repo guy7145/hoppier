@@ -27,7 +27,6 @@ class HopsData {
 
     async populateData() {
         const hopsObj = await fetchAllHops();
-
         const hopIndices = {};
         Object.keys(hopsObj).forEach((hopName, index) => hopIndices[hopName] = index);
 

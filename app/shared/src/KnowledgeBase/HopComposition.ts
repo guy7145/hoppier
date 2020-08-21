@@ -16,10 +16,12 @@ export const hopCompounds = [
     'beta acid',
 ];
 
-function isHopMissingData(hop: Hop): Boolean {
+export function isHopMissingData(hop: Hop): Boolean {
     return !_.every(hopCompounds.map(c => hop[c] && hop[c] !== '' && hop[c] !== MISSING_PROPERTY))
 }
 
 export function filterHopsWithMissingData(hopsList: Array<Hop>): Array<Hop> {
+    console.log('missing data:');
+    console.log(hopsList.filter(hop => isHopMissingData(hop)).map(hop => hop.title));
     return hopsList.filter(hop => !isHopMissingData(hop));
 }

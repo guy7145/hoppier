@@ -3,6 +3,7 @@ import HopContentArea from "./ContentArea/HopContentArea";
 import Axis from "./Axis/Axis";
 import styles from './hop-characteristics.less';
 import Hops from '../../../Backend/data';
+import SearchBar from "../../SearchBar/SearchBar";
 
 
 export default function HopCharacteristics() {
@@ -12,6 +13,12 @@ export default function HopCharacteristics() {
     const removeHop = hop => setHops(hops.filter(other => other !== hop));
 
     return <div className={styles.hopCharacteristics}>
+        <SearchBar
+            items={Hops.hopsList}
+            getKey={hop => hop.title}
+            renderItem={(hop, isHighlighted) => <div>{isHighlighted ? '->' : ''} {hop.title}</div>}
+            onSelect={setHop}
+        />
         <div className={styles.contentArea}>
             <HopContentArea
                 hops={hops}
@@ -21,7 +28,7 @@ export default function HopCharacteristics() {
             />
         </div>
         <div className={styles.axisArea}>
-            <Axis setHop={setHop} allHops={Hops.hopsList} selectedHopIndex={5}/>
+            <Axis setHop={setHop} allHops={Hops.hopsList} selectedHopIndex={0}/>
         </div>
     </div>;
 }
