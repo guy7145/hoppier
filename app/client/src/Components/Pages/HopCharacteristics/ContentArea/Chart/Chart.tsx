@@ -120,7 +120,9 @@ export default function Chart({hopsList}) {
         hopsList = hopToMinMax(hopsList[0]);
     }
 
-    const series = hopsList.map(hop => ({name: hop.title, data: hopValues(hop, hopCompounds)}));
+    const series = hopsList.length === 0 ?
+        [{name: '', data: hopCompounds.map(() => 0)}] :
+        hopsList.map(hop => ({name: hop.title, data: hopValues(hop, hopCompounds)}));
 
     return <div id='chart' className={styles.chartContainer}>
         <ReactApexChart options={apexOptions} series={series} type="radar" height={'100%'} width={'100%'}/>
