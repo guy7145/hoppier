@@ -37,27 +37,20 @@ const config = {
         }
       },
       {
-        test: /\.(png|jp(e*)g|svg|gif)$/,
+        test: /\.svg$/,
+        use: 'file-loader'
+      },
+      {
+        test: /\.png$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
-              name: 'images/[hash]-[name].[ext]',
-            },
-          },
-        ],
+              mimetype: 'image/png'
+            }
+          }
+        ]
       },
-      // {
-      //   test: /\.png$/,
-      //   use: [
-      //     {
-      //       loader: 'url-loader',
-      //       options: {
-      //         mimetype: 'image/png'
-      //       }
-      //     }
-      //   ]
-      // },
       {
         test: /\.less$/,
         exclude: /\.global\.less$/,
