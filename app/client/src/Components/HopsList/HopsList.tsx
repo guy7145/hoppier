@@ -16,7 +16,12 @@ type HopsListProps = {
 
 export default function HopsList({items, allItems, addItem, delItem}: HopsListProps) {
     return <div className={styles.list}>
-        {items.map(hop => <Item hop={hop}/>)}
+        {items.map(hop => <Item
+            hop={hop}
+            isVisible={true}
+            changeVisibility={() => {}}
+            deleteHop={() => delItem(hop)}
+        />)}
         <AddItem
             availableItems={allItems.filter(item => !items.includes(item))}
             getItemTitle={item => item.title}

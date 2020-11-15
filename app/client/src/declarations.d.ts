@@ -23,3 +23,8 @@ declare module '*.module.css' {
     };
     export default classes;
 }
+
+declare module "*.svg" {
+    const content: any;
+    export default content;
+}
