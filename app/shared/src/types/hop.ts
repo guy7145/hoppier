@@ -1,7 +1,6 @@
 export type BeerStyle = string;
 
-
-export interface Hop {
+export interface HopData {
     totalOil: Number,
     myrceneOil: Number,
     coHumuloneOil: Number,
@@ -10,6 +9,10 @@ export interface Hop {
     farneseneOil: Number,
     alphaAcid: Number,
     betaAcid: Number,
+}
+
+export interface Hop extends HopData {
+    normalized: HopData,
     title: string,
     description: string,
     country: string,

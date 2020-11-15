@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 export function hopValues(hop, keys) {
     return keys
-        .map(k => hop[k])
+        .map(k => hop.normalized[k])
         .map(v => Array.isArray(v) ? _.mean(v) : v)
         .map(v => v === '?' ? 0 : v);
 }

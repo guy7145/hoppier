@@ -7,7 +7,7 @@ import _ from 'lodash';
 
 
 export default function Pie({hop}: {hop: Hop}) {
-    const data = _.zipWith(hopCompounds, hopValues(hop, hopCompounds)).map((comp, val) => ({
+    const data = _.zipWith(hopCompounds, hopValues(hop, hopCompounds)).map(([comp, val]) => ({
         id: comp,
         value: val,
     }));
