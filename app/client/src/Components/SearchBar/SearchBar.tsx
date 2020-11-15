@@ -26,7 +26,7 @@ export default function SearchBar<T>({items, getKey, onSelect, initSearching=fal
         setTimeout(() => {
             setIsStopping(false);
             setIsSearching(false);
-        }, 100)
+        }, 200)
     }
     const chooseItem = (item) => {
         // setIsSearching(false);
