@@ -4,22 +4,23 @@ import styles from './styles.less';
 import {Hop} from "@shared/types/hop";
 import Item from "./Item";
 import AddItem from "./AddItem";
-import Radar from "../Chart/Radar";
 
 
 type HopsListProps = {
     items: Array<Hop>,
+    visibleItems: Array<Hop>,
     allItems: Array<Hop>,
     addItem: (hop: Hop) => void,
     delItem: (hop: Hop) => void,
+    changeItemVisibility: (hop: Hop) => void,
 };
 
-export default function HopsList({items, allItems, addItem, delItem}: HopsListProps) {
+export default function HopsList({items, visibleItems, allItems, addItem, delItem, changeItemVisibility}: HopsListProps) {
     return <div className={styles.list}>
         {items.map(hop => <Item
             hop={hop}
-            isVisible={true}
-            changeVisibility={() => {}}
+            isVisible={visibleItems.includes(hop)}
+            changeVisibility={() => changeItemVisibility(hop)}
             deleteHop={() => delItem(hop)}
         />)}
         <AddItem

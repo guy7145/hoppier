@@ -14,12 +14,15 @@
   background-color: @foreground-secondary;
 }
 
+.hidden {
+  color: @foreground-secondary;
+}
+
 .itemContainer {
   .center();
   width: 100%;
   height: 6em;
   padding: 0.5em 0;
-  //background-color: #e24d5e;
 }
 
 .item {
@@ -58,7 +61,10 @@
   width: 2em;
   height: 2em;
   margin-right: 0.5em;
-  //transform: rotateZ(180deg);
+  transition: all .2s ease-out;
+  .hidden & {
+    filter: grayscale() brightness(0.5);
+  }
 }
 
 .hopName {
@@ -95,7 +101,15 @@
       transform: scale(1.4);
       color: @foreground-primary-bright;
     }
+
+    .hidden &:not(.activeIcon) {
+      pointer-events: none;
+    }
   }
+}
+
+.activeIcon {
+  color: @text-color;
 }
 
 @keyframes rotate-in {
@@ -105,7 +119,6 @@
 
 .addItemButton {
   .center();
-  //.item()
   box-sizing: border-box;
   border-radius: 100%;
   padding: calc(@add-item-button-width);
