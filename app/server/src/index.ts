@@ -18,6 +18,6 @@ app.get('/data/mst', function (req, res) {
 
 });
 
-const port = 1234;
+const port = 5000;
 console.log(`listening on port ${port}`);
 app.listen(port);

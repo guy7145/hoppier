@@ -1,10 +1,16 @@
 @import '../../Styles/theme';
 @import '../../Styles/lib';
 
-@search-bg-color: @primary-4;
+@search-bg-color: #ffffff;
+@search-fg-color: @background-color;
+@search-icon-color: #9aa0a6;
+@radius: 1.25em;
+@font-size: 0.9em;
+@small-font-size: 0.85em;
 
 
 .searchContainer {
+  position: relative;
   height: fit-content;
   width: 100%;
 
@@ -15,44 +21,93 @@
   padding: 0.5em 0;
   margin: 0.5em 0;
 
-  border-radius: 1em;
-  background-color: @primary-4;
-  .colored(@text-color, @search-bg-color, 10%, 100%);
+  background-color: @search-bg-color;
+  color: @search-fg-color;
+  border-radius: @radius;
+
+  box-shadow: 0 1px 6px 0 rgba(33, 33, 33, 0.3);
+
+  &.open {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
 
 .searchIconContainer {
   .center();
-  padding: 0 0.25em 0 0.5em;
+  padding: 0 10px 0 14px;
+  color: @search-icon-color;
+  display: flex;
+  align-items: center;
 }
 
 .searchIcon {
 }
 
-.searchInputContainer {
-  .full-size();
-  width: border-box;
-  margin-right: 0.5em;
-}
-
 .searchInput {
   .full-size();
-  font-size: 16px;
+  font-size: @font-size;
   overflow: hidden;
   margin-right: 0.5em;
   box-sizing: border-box;
+  color: @search-fg-color;
 }
 
-.autocompleteSuggestions {
-  position: absolute;
+.suggestedItemsContainer {
   width: 100%;
-  max-height: 10em;
-  overflow: hidden;
-
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: translateY(100%);
+  height: fit-content;
   display: flex;
   flex-flow: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
 
-  background: @primary-4;
-  border-radius: 0 0 1em 1em;
+  border-radius: 0 0 @radius @radius;
+  padding-bottom: 0.5em;
+
+  background-color: @search-bg-color;
+  color: @search-fg-color;
+  font-size: @font-size;
+  font-weight: 500;
+  box-shadow: 0 4px 6px 0 rgba(33, 33, 33, 0.3);
+
+  clip-path: inset(0 0 0 0);
+  transform-origin: bottom;
+  animation: move-in .2s ease-out;
+  &.foldSuggestions {
+    transition: all .1s ease-out;
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+@keyframes move-in {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.suggestedItems {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+}
+
+.suggestion {
+  display: flex;
+  width: 100%;
+  padding: 6px 0;
+  & .searchIconContainer {
+    filter: blur(0.5px);
+  }
+}
+
+.noResults {
+  color: mix(@search-fg-color, @search-bg-color, 50%);
+  margin-left: 1em;
 }

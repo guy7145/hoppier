@@ -1,9 +1,10 @@
 import React from "react";
+import { ResponsiveRadar } from '@nivo/radar';
 import ReactApexChart from "react-apexcharts";
-import styles from './chart.less'
-import './apex.global.less'
+import styles from './chart.less';
+import './apex.global.less';
 import _ from 'lodash';
-import {hopCompounds} from "../../../../../../../shared/src/KnowledgeBase/HopComposition";
+import {hopCompounds} from "../../../../shared/src/KnowledgeBase/HopComposition";
 
 
 const apexOptions = {
@@ -127,4 +128,35 @@ export default function Chart({hopsList}) {
     return <div id='chart' className={styles.chartContainer}>
         <ReactApexChart options={apexOptions} series={series} type="radar" height={'100%'} width={'100%'}/>
     </div>;
+    // const data = [
+    //     {
+    //         'total oil': 40,
+    //         'a': 40,
+    //         'b': 40,
+    //         'c': 40,
+    //     },
+    //     {
+    //         'total oil': 12,
+    //         'a': 13,
+    //         'b': 50,
+    //         'c': 29,
+    //     },
+    //     {
+    //         'total oil': 13,
+    //         'a': 18,
+    //         'b': 58,
+    //         'c': 1,
+    //     },
+    //     {
+    //         'total oil': 18,
+    //         'a': 8,
+    //         'b': 8,
+    //         'c': 2,
+    //     },
+    // ];
+    // return <ResponsiveRadar
+    //     data={data}
+    //     keys={['a', 'b', 'c']}
+    //     indexBy={'total oil'}
+    // />;
 }

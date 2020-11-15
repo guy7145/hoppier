@@ -1,10 +1,10 @@
 import React from "react";
-import Chart from "./Chart/Chart";
+import Chart from "../../../Components/Chart/Chart";
 import Title from "./Title/Title";
 import styles from './content-area.less'
 import {Hop} from "@shared/types/hop";
 import HopInfo from "./HopInfo/HopInfo";
-import HopTag from "../../../HopTag/HopTag";
+import HopTag from "../../../Components/HopTag/HopTag";
 
 
 export default function HopContentArea({hops, setHop, addHop, removeHop}: {

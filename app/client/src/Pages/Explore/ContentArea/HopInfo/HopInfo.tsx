@@ -4,7 +4,7 @@ import Description from "./Description/Description";
 import styles from './hop-info.less';
 import Country from "./Country/Country";
 import ListProperty from "./ListProperty/ListProperty";
-import HopLink from "../../../../HopLink/HopLink";
+import HopLink from "../../../../Components/HopLink/HopLink";
 
 export default function HopInfo({hop, setHop, addHop}: {hop: Hop, setHop: (Hop) => void, addHop: (Hop) => void}) {
     return <div className={styles.hopInfo}>
