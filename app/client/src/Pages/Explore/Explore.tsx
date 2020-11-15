@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import styles from './explore.less';
 import Hops from '../../Backend/data';
-import Chart from "../../Components/Chart/Chart";
+import Radar from "../../Components/Chart/Radar";
 import HopsList from "../../Components/HopsList/HopsList";
 
 
 export default function Explore() {
-    const [hops, setHops] = useState([Hops.hopsList[0]]);
+    const [hops, setHops] = useState(Hops.hopsList.slice(0, 5));
     const setHop = hop => setHops([hop]);
     const addHop = hop => setHops([...hops, hop]);
     const removeHop = hop => setHops(hops.filter(other => other !== hop));
@@ -28,7 +28,7 @@ export default function Explore() {
         {/*</div>*/}
         <HopsList items={hops} allItems={Hops.hopsList} addItem={addHop} delItem={removeHop}/>
         <div className={styles.chartArea}>
-            <Chart hopsList={hops}/>
+            <Radar hopsList={hops}/>
         </div>
     </div>;
 }

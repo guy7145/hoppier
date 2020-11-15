@@ -6,19 +6,23 @@ import classNames from 'classnames';
 import Separator from "../Separator/Separator";
 
 
-export default function SearchBar<T>({items, getKey, onSelect, initSearching=false}:
-    {
-        items: Array<T>,
-        getKey: (item: T) => string,
-        // renderItem: (item: T, isHighlighted: boolean) => ReactNode,
-        onSelect: (item: T) => void,
-        initSearching?: boolean,
-    }) {
+type SearchBarProps<T> = {
+    items: Array<T>,
+    getKey: (item: T) => string,
+    // renderItem: (item: T, isHighlighted: boolean) => ReactNode,
+    onSelect: (item: T) => void,
+    onSearchStop?: () => void,
+    initSearching?: boolean,
+}
+
+
+export default function SearchBar<T>({items, getKey, onSelect, onSearchStop=() => {}, initSearching=false}: SearchBarProps<T>) {
     const [isSearching, setIsSearching] = useState(false);
     const [isStopping, setIsStopping] = useState(false);
     const [value, setValue] = useState('');
     const valueLower = value.toLowerCase().trim();
-    const suggestions = items.filter(item => getKey(item).toLowerCase().startsWith(valueLower));
+    const shouldSuggest = isSearching && !isStopping && valueLower !== '';
+    const suggestions = valueLower !== '' ? items.filter(item => getKey(item).toLowerCase().includes(valueLower)) : [];
 
     const startSearch = () => setIsSearching(true)
     const stopSearchTimeout = () => {
@@ -26,14 +30,18 @@ export default function SearchBar<T>({items, getKey, onSelect, initSearching=fal
         setTimeout(() => {
             setIsStopping(false);
             setIsSearching(false);
-        }, 200)
+            onSearchStop();
+        }, shouldSuggest ? 250 : 0)
     }
     const chooseItem = (item) => {
         // setIsSearching(false);
         onSelect(item);
     }
 
-    return <div className={classNames(styles.searchContainer, isSearching && styles.open)}>
+    return <div className={classNames(
+        styles.searchContainer,
+        shouldSuggest && styles.open,
+    )}>
         <div className={styles.searchIconContainer}>
             <FontAwesomeIcon className={styles.searchIcon} icon={faSearch}/>
         </div>
@@ -43,11 +51,13 @@ export default function SearchBar<T>({items, getKey, onSelect, initSearching=fal
             onBlur={stopSearchTimeout}
             onFocus={startSearch}
             autoFocus={initSearching}
+            placeholder={'search hops'}
         />
         {
-            isSearching && <div className={classNames(
+            <div className={classNames(
                 styles.suggestedItemsContainer,
-                isStopping && styles.foldSuggestions,
+                shouldSuggest && styles.visible,
+                (!shouldSuggest || isStopping) && styles.foldSuggestions,
             )}>
                 <Separator vertical={false} />
                 <div className={styles.suggestedItems}>

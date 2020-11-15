@@ -1,10 +1,9 @@
 import React from "react";
-import { ResponsiveRadar } from '@nivo/radar';
 import ReactApexChart from "react-apexcharts";
 import styles from './chart.less';
 import './apex.global.less';
-import _ from 'lodash';
 import {hopCompounds} from "../../../../shared/src/KnowledgeBase/HopComposition";
+import {hopToMinMax, hopValues} from "./utils";
 
 
 const apexOptions = {
@@ -93,30 +92,7 @@ const apexOptions = {
 };
 
 
-function hopValues(hop, keys) {
-    return keys
-        .map(k => hop[k])
-        .map(v => Array.isArray(v) ? _.mean(v) : v)
-        .map(v => v === '?' ? 0 : v);
-}
-
-
-function hopToMinMax(hop) {
-    const hopMin = {...hop, title: `${hop.title} (min)`};
-    const hopMax = {...hop, title: `${hop.title} (max)`};
-    hopCompounds.forEach((c) => {
-        const value = hop[c];
-        if (Array.isArray(value) && value.length > 1) {
-            hopMin[c] = _.min(value);
-            hopMax[c] = _.max(value);
-        }
-    });
-
-    return [hopMin, hopMax];
-}
-
-
-export default function Chart({hopsList}) {
+export default function Radar({hopsList}) {
     if (hopsList.length === 1) {
         hopsList = hopToMinMax(hopsList[0]);
     }
@@ -128,35 +104,4 @@ export default function Chart({hopsList}) {
     return <div id='chart' className={styles.chartContainer}>
         <ReactApexChart options={apexOptions} series={series} type="radar" height={'100%'} width={'100%'}/>
     </div>;
-    // const data = [
-    //     {
-    //         'total oil': 40,
-    //         'a': 40,
-    //         'b': 40,
-    //         'c': 40,
-    //     },
-    //     {
-    //         'total oil': 12,
-    //         'a': 13,
-    //         'b': 50,
-    //         'c': 29,
-    //     },
-    //     {
-    //         'total oil': 13,
-    //         'a': 18,
-    //         'b': 58,
-    //         'c': 1,
-    //     },
-    //     {
-    //         'total oil': 18,
-    //         'a': 8,
-    //         'b': 8,
-    //         'c': 2,
-    //     },
-    // ];
-    // return <ResponsiveRadar
-    //     data={data}
-    //     keys={['a', 'b', 'c']}
-    //     indexBy={'total oil'}
-    // />;
 }

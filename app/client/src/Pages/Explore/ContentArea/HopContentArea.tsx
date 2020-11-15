@@ -1,5 +1,5 @@
 import React from "react";
-import Chart from "../../../Components/Chart/Chart";
+import Radar from "../../../Components/Chart/Radar";
 import Title from "./Title/Title";
 import styles from './content-area.less'
 import {Hop} from "@shared/types/hop";
@@ -22,7 +22,7 @@ export default function HopContentArea({hops, setHop, addHop, removeHop}: {
             {hops.map(h => <HopTag hop={h} onClick={() => setHop(h)} onRemove={() => removeHop(h)}/>)}
         </div>
         <div className={styles.chartArea}>
-            <Chart hopsList={hops}/>
+            <Radar hopsList={hops}/>
         </div>
     </div>;
 }
