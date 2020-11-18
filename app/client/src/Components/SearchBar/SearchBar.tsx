@@ -31,7 +31,7 @@ export default function SearchBar<T>({items, getKey, onSelect, onSearchStop=() =
             setIsStopping(false);
             setIsSearching(false);
             onSearchStop();
-        }, shouldSuggest ? 250 : 0)
+        }, shouldSuggest ? 100 : 0)
     }
     const chooseItem = (item) => {
         // setIsSearching(false);
@@ -65,7 +65,7 @@ export default function SearchBar<T>({items, getKey, onSelect, onSearchStop=() =
                         suggestions.length > 0 ? suggestions.slice(0, 5).map(
                             (item) => {
                                 const key = getKey(item);
-                                return <div onClick={() => chooseItem(item)} className={styles.suggestion} key={key}>
+                                return <div onMouseDown={() => chooseItem(item)} className={styles.suggestion} key={key}>
                                     <div className={styles.searchIconContainer}>
                                         <FontAwesomeIcon className={styles.searchIcon} icon={faSearch}/>
                                     </div>

@@ -7,9 +7,8 @@
 @radius: 1.25em;
 @font-size: 0.9em;
 @small-font-size: 0.85em;
-@fold-delay: .1s;
 @fold-time: .1s;
-@total-fold-time: calc(@fold-delay + @fold-time);
+
 
 .searchContainer {
   position: relative;
@@ -28,7 +27,7 @@
   border-radius: @radius;
 
   box-shadow: 0 1px 6px 0 rgba(33, 33, 33, 0.3);
-  transition-delay: @total-fold-time;
+  transition-delay: @fold-time;
 
   &.open {
     transition: all .05s;
@@ -81,12 +80,11 @@
   transform-origin: bottom;
   &.visible {
     clip-path: inset(0 0 0 0);
-    animation: move-in @total-fold-time ease-out;
+    animation: move-in @fold-time ease-out;
   }
 
   &.foldSuggestions {
     transition: all @fold-time ease-out;
-    transition-delay: @fold-delay;
     clip-path: inset(0 0 100% 0);
   }
 }

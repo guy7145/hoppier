@@ -5,15 +5,15 @@ import {hopValues} from "./utils";
 import {hopCompounds} from "../../../../shared/src/KnowledgeBase/HopComposition";
 import _ from 'lodash';
 
+const GREY_COLOR = {colors: '#4b4c52'};
 
-export default function Pie({hop}: {hop: Hop}) {
+export default function Pie({hop, colorful=true}: {hop: Hop, colorful?: boolean}) {
     const data = _.zipWith(hopCompounds, hopValues(hop, hopCompounds)).map(([comp, val]) => ({
         id: comp,
         value: val,
     }));
     return <ResponsivePie
         data={data}
-
         enableRadialLabels={false}
         enableSliceLabels={false}
         borderWidth={0}
@@ -22,5 +22,6 @@ export default function Pie({hop}: {hop: Hop}) {
         cornerRadius={5}
         sortByValue={false}
         isInteractive={false}
+        {...(colorful ? {} : GREY_COLOR)}
     />;
 }

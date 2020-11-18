@@ -36,7 +36,7 @@ export default function Item({hop, isVisible, changeVisibility, deleteHop}: Item
             </div>
             <div className={styles.chartContainer}>
                 <div className={styles.chartSizeLimiter}>
-                    <Pie hop={hop}/>
+                    <Pie hop={hop} colorful={isVisible}/>
                 </div>
             </div>
         </div>
