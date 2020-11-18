@@ -1,3 +1,4 @@
+@import '../../Styles/animations';
 @import '../../Styles/theme';
 @import '../../Styles/lib';
 
@@ -80,21 +81,12 @@
   transform-origin: bottom;
   &.visible {
     clip-path: inset(0 0 0 0);
-    animation: move-in @fold-time ease-out;
+    animation: crop-in-down @fold-time ease-out;
   }
 
   &.foldSuggestions {
     transition: all @fold-time ease-out;
     clip-path: inset(0 0 100% 0);
-  }
-}
-
-@keyframes move-in {
-  from {
-    clip-path: inset(0 0 100% 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
   }
 }
 
