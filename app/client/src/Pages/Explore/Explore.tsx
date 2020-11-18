@@ -7,7 +7,7 @@ import getListOperations from "../../Backend/utils";
 
 
 export default function Explore() {
-    const [hops, setHops] = useState(Hops.hopsList.slice(0, 5));
+    const [hops, setHops] = useState(Hops.hopsList.slice(0, 3));
     const [visibleHops, setVisibleHops] = useState(hops);
 
     const {setItem: setHop, addItem: addHop, removeItem: removeHop} = getListOperations(hops, setHops);
