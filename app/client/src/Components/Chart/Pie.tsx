@@ -5,7 +5,9 @@ import {hopValues} from "./utils";
 import {hopCompounds} from "../../../../shared/src/KnowledgeBase/HopComposition";
 import _ from 'lodash';
 
-const GREY_COLOR = {colors: '#4b4c52'};
+import styles from './chart.less';
+const GREY_COLOR = {colors: styles.textColorDisabled};
+
 
 export default function Pie({hop, colorful=true}: {hop: Hop, colorful?: boolean}) {
     const data = _.zipWith(hopCompounds, hopValues(hop, hopCompounds)).map(([comp, val]) => ({
