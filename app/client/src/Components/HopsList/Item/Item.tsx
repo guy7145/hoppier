@@ -1,10 +1,10 @@
-import React from "react";
+import React, {ReactNode, useState} from "react";
 
 import styles from './item.less';
 import {Hop} from "@shared/types/hop";
 import Pie from "../../Chart/Pie";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEye, faEyeSlash, faTimes, faSearch} from "@fortawesome/free-solid-svg-icons";
+import {faEye, faEyeSlash, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
 import hopIcon from '../../../assets/hop-yellow.svg';
 import classNames from "classnames";
 
@@ -13,8 +13,12 @@ type ItemProps = {
     isVisible: boolean,
     changeVisibility: () => void,
     deleteHop: () => void,
+    createSearchBar: (onSearchStop: () => void) => ReactNode,
 }
-export default function Item({hop, isVisible, changeVisibility, deleteHop}: ItemProps) {
+
+export default function Item({hop, isVisible, changeVisibility, deleteHop, createSearchBar}: ItemProps) {
+    const [isSearching, setIsSearching] = useState(false);
+
     return <div className={classNames(styles.itemContainer, !isVisible && styles.hidden)}>
         <div className={styles.item}>
             <div className={styles.hopName}>
@@ -22,17 +26,26 @@ export default function Item({hop, isVisible, changeVisibility, deleteHop}: Item
                 {hop.title}
             </div>
             <div className={styles.controllersContainer}>
-                <FontAwesomeIcon
-                    className={styles.activeIcon}
-                    icon={isVisible ? faEye : faEyeSlash}
-                    onClick={changeVisibility}
-                />
-                <FontAwesomeIcon
-                    className={styles.activeIcon}
-                    icon={faTimes}
-                    onClick={deleteHop}
-                />
-                <FontAwesomeIcon icon={faSearch}/>
+                {
+                    isSearching ? createSearchBar(() => setIsSearching(false)) :
+                        <>
+                            <FontAwesomeIcon
+                                className={classNames(styles.controller, styles.activeIcon)}
+                                icon={isVisible ? faEye : faEyeSlash}
+                                onClick={changeVisibility}
+                            />
+                            <FontAwesomeIcon
+                                className={classNames(styles.controller, styles.activeIcon)}
+                                icon={faTimes}
+                                onClick={deleteHop}
+                            />
+                            <FontAwesomeIcon
+                                className={styles.controller}
+                                icon={faSearch}
+                                onClick={() => setIsSearching(true)}
+                            />
+                        </>
+                }
             </div>
             <div className={styles.chartContainer}>
                 <div className={styles.chartSizeLimiter}>

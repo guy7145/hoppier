@@ -2,10 +2,14 @@
 @import '../../../Styles/theme';
 @import '../../../Styles/lib';
 
+@plus-button-size: 3em;
 
 .addItem {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
   width: 100%;
-  .center();
 
   &.search {
     justify-content: flex-start;
@@ -14,11 +18,12 @@
 
 .animatedContainer {
   .center();
-
   transition: width .1s ease-out;
 
+  height: @plus-button-size;
+
   &.button {
-    width: 2em;
+    width: @plus-button-size;
   }
 
   &.search {
@@ -28,10 +33,11 @@
 
 .addItemButton {
   .center();
-  cursor: pointer;
-  border-radius: 100%;
   box-sizing: border-box;
+  width: @plus-button-size;
+  height: @plus-button-size;
+  border-radius: 100%;
   border: @foreground-secondary solid 1px;
-  padding: 1em;
   background-color: @background-color;
+  cursor: pointer;
 }

@@ -4,6 +4,7 @@ import styles from './hops-list.less';
 import {Hop} from "@shared/types/hop";
 import Item from "./Item/Item";
 import AddItem from "./Item/AddItem";
+import SearchBar from "../SearchBar/SearchBar";
 
 
 type HopsListProps = {
@@ -16,6 +17,17 @@ type HopsListProps = {
 };
 
 export default function HopsList({items, visibleItems, allItems, addItem, delItem, changeItemVisibility}: HopsListProps) {
+    const restItems = allItems.filter(item => !items.includes(item));
+    const getItemTitle = item => item.title;
+    const createSearchBar = hop => onSearchStop => <SearchBar
+        items={restItems}
+        getKey={getItemTitle}
+        onSelect={(selectedItem) => {
+            // TODO: replace with new hop
+        }}
+        onSearchStop={onSearchStop}
+        initSearching={true}
+    />
     return <div className={styles.list}>
         {items.map(hop => <Item
             key={hop.title}
@@ -23,11 +35,12 @@ export default function HopsList({items, visibleItems, allItems, addItem, delIte
             isVisible={visibleItems.includes(hop)}
             changeVisibility={() => changeItemVisibility(hop)}
             deleteHop={() => delItem(hop)}
+            createSearchBar={createSearchBar(hop)}
         />)}
         <AddItem
             key={'add-hop'}
-            availableItems={allItems.filter(item => !items.includes(item))}
-            getItemTitle={item => item.title}
+            availableItems={restItems}
+            getItemTitle={getItemTitle}
             onAddItem={addItem}
         />
     </div>;

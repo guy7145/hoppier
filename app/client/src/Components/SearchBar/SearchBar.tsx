@@ -13,7 +13,6 @@ type SearchBarProps<T> = {
     onSearchStop?: () => void,
     visible?: boolean,
     initSearching?: boolean,
-    // renderItem: (item: T, isHighlighted: boolean) => ReactNode,
 }
 
 
@@ -24,10 +23,6 @@ export default function SearchBar<T>(
     const [suggestionsOpen, setSuggestionsOpen] = useState(false);
     const [isSearching, setIsSearching] = useState(false);
     const [value, setValue] = useState('');
-
-    if (!visible && value !== '') {
-        setValue('');
-    }
 
     const startSearch = () => setIsSearching(true)
     const stopSearchTimeout = () => {
