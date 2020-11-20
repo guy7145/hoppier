@@ -1,0 +1,37 @@
+@import '../../../Styles/animations';
+@import '../../../Styles/theme';
+@import '../../../Styles/lib';
+
+
+.addItem {
+  width: 100%;
+  .center();
+
+  &.search {
+    justify-content: flex-start;
+  }
+}
+
+.animatedContainer {
+  .center();
+
+  transition: width .1s ease-out;
+
+  &.button {
+    width: 2em;
+  }
+
+  &.search {
+    width: 100%;
+  }
+}
+
+.addItemButton {
+  .center();
+  cursor: pointer;
+  border-radius: 100%;
+  box-sizing: border-box;
+  border: @foreground-secondary solid 1px;
+  padding: 1em;
+  background-color: @background-color;
+}

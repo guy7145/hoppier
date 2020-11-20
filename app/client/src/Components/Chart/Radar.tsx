@@ -17,7 +17,7 @@ const apexOptions = {
         },
         animations: {
             enabled: true,
-            easing: 'easein',
+            easing: 'easeout',
             speed: 200,
             animateGradually: {
                 enabled: false,
@@ -35,15 +35,15 @@ const apexOptions = {
         fontSize: '20px'
     },
     legend: {
-        show: true,
-        showForSingleSeries: false,
-        position: 'left',
-        labels: {
-            colors: 'rgba(188, 245, 232, 0.9)',
-            useSeriesColors: true
-        },
-        horizontalAlign: 'left',
-        floating: true,
+        show: false,
+        // showForSingleSeries: false,
+        // position: 'left',
+        // labels: {
+        //     colors: 'rgba(188, 245, 232, 0.9)',
+        //     useSeriesColors: true
+        // },
+        // horizontalAlign: 'left',
+        // floating: true,
     },
     dataLabels: {
         enabled: false,
@@ -81,7 +81,7 @@ const apexOptions = {
     },
     yaxis: {
         show: false,
-        tickAmount: 4,
+        tickAmount: 5,
         min: 0,
         max: 100,
     },

@@ -1,0 +1,14 @@
+@import '../../Styles/animations';
+@import '../../Styles/theme';
+@import '../../Styles/lib';
+
+.list {
+  .scrollbar(@text-color);
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  min-width: 16em;
+  height: 100%;
+  background-color: @foreground-secondary;
+}

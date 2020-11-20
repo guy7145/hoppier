@@ -1,11 +1,11 @@
 import React from "react";
 
-import styles from './styles.less';
+import styles from './item.less';
 import {Hop} from "@shared/types/hop";
-import Pie from "../Chart/Pie";
+import Pie from "../../Chart/Pie";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye, faEyeSlash, faTimes, faSearch} from "@fortawesome/free-solid-svg-icons";
-import hopIcon from '../../assets/hop-yellow.svg';
+import hopIcon from '../../../assets/hop-yellow.svg';
 import classNames from "classnames";
 
 type ItemProps = {

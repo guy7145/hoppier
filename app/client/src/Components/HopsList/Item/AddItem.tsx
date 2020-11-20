@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 
-import styles from './styles.less';
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "../../SearchBar/SearchBar";
 import classNames from "classnames";
+
+import styles from './add-item.less';
+
 
 type AddItemProps<T> = {
     availableItems: Array<T>,
@@ -13,26 +15,24 @@ type AddItemProps<T> = {
 
 export default function AddItem<T>({availableItems, getItemTitle, onAddItem}: AddItemProps<T>) {
     const [isSelecting, setIsSelecting] = useState(false);
+    const stopSelecting = () => setIsSelecting(false);
 
-    return <div className={styles.addItemButtonItem}>
-        <div className={classNames(
-            styles.addItemButtonContainer,
-            {
-                [styles.search]: isSelecting,
-                [styles.button]: !isSelecting,
-            }
-        )}>
+    return <div className={classNames(styles.addItem, isSelecting && styles.search)}>
+        <div className={classNames(styles.animatedContainer, isSelecting ? styles.search : styles.button)}>
             {
                 isSelecting ? <SearchBar
                     items={availableItems}
                     getKey={getItemTitle}
                     onSelect={(item) => {
                         onAddItem(item);
-                        setIsSelecting(false);
+                        stopSelecting();
                     }}
-                    onSearchStop={() => setIsSelecting(false)}
+                    onSearchStop={stopSelecting}
                     initSearching={true}
-                /> : <div className={styles.addItemButton} onClick={() => setIsSelecting(true)}>+</div>
+                /> : <div
+                    className={styles.addItemButton}
+                    onClick={() => setIsSelecting(true)}
+                >+</div>
             }
         </div>
     </div>

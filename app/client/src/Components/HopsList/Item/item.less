@@ -1,19 +1,7 @@
-@import '../../Styles/animations';
-@import '../../Styles/theme';
-@import '../../Styles/lib';
+@import '../../../Styles/animations';
+@import '../../../Styles/theme';
+@import '../../../Styles/lib';
 
-@add-item-button-width: 1em;
-
-.list {
-  .scrollbar(@text-color);
-
-  overflow-y: scroll;
-  overflow-x: hidden;
-
-  min-width: 16em;
-  height: 100%;
-  background-color: @foreground-secondary;
-}
 
 .hidden {
   color: @text-disabled;
@@ -25,7 +13,7 @@
   height: 6em;
   padding: 0.5em 0;
 
-  animation: crop-in-right 0.4s ease-out;
+  animation: fade-in-right 0.4s ease-out;
 }
 
 .item {
@@ -113,34 +101,4 @@
 
 .activeIcon {
   color: @text-color;
-}
-
-.addItemButton {
-  .center();
-  box-sizing: border-box;
-  border-radius: 100%;
-  padding: calc(@add-item-button-width);
-  background-color: @background-color;
-  border: @foreground-secondary solid 1px;
-}
-
-.addItemButtonContainer {
-  .center();
-  transition: all .1s linear;
-  box-sizing: border-box;
-
-  &.button {
-    width: @add-item-button-width;
-  }
-
-  &.search {
-    width: 100%;
-  }
-}
-
-.addItemButtonItem {
-  width: 100%;
-  .center();
-  user-select: none;
-  cursor: pointer;
 }

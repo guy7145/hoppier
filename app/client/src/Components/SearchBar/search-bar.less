@@ -28,12 +28,22 @@
   border-radius: @radius;
 
   box-shadow: 0 1px 6px 0 rgba(33, 33, 33, 0.3);
-  transition-delay: @fold-time;
+  transition: all .1s linear 0s, border-radius 0.01s ease-out @fold-time;
 
   &.open {
-    transition: all .05s;
+    transition-delay: 0s;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+  }
+
+  &.hidden {
+    width: 0;
+    pointer-events: none;
+    cursor: unset;
+
+    & > * {
+      visibility: hidden;
+    }
   }
 }
 
@@ -41,8 +51,6 @@
   .center();
   padding: 0 10px 0 14px;
   color: @search-icon-color;
-  display: flex;
-  align-items: center;
 }
 
 .searchIcon {
