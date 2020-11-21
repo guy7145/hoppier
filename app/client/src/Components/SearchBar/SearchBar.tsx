@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {useKey} from 'react-use';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import classNames from 'classnames';
@@ -25,12 +24,9 @@ export default function SearchBar<T>(
         items, getKey, onSelect, onSearchStop=() => {}, visible=true, initSearching=false
     }: SearchBarProps<T>) {
     const [suggestionsOpen, setSuggestionsOpen] = useState(false);
-    const [focusedSuggestionIndex] = useState(-1);
     const [value, setValue] = useState('');
 
-    const stopSearchTimeout = () => {
-        setTimeout(onSearchStop, suggestionsOpen ? foldTime : 0)
-    }
+    const stopSearchTimeout = () => setTimeout(onSearchStop, suggestionsOpen ? foldTime : 0);
 
     return <div className={classNames(
         styles.searchContainer,
@@ -57,6 +53,7 @@ export default function SearchBar<T>(
             onExpand={() => setSuggestionsOpen(true)}
             onFold={() => setSuggestionsOpen(false)}
             onSelect={onSelect}
+            onEsc={onSearchStop}
         />
     </div>;
 }

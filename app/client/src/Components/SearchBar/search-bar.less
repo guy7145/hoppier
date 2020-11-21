@@ -3,10 +3,11 @@
 @import '../../Styles/lib';
 
 
-@radius: 1.25em;
+@radius-closed: 1.25em;
+@radius-open: 0.5em;
 @font-size: 0.9em;
 @small-font-size: 0.85em;
-@fold-time: 100ms;
+@fold-time: .1s;
 
 
 .searchContainer {
@@ -23,15 +24,14 @@
 
   background-color: @search-bg-color;
   color: @search-fg-color;
-  border-radius: @radius;
+  border-radius: @radius-closed;
 
   box-shadow: 0 1px 6px 0 rgba(33, 33, 33, 0.3);
   transition: all .1s linear 0s, border-radius 0.01s ease-out @fold-time;
 
   &.open {
     transition-delay: 0s;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-radius: @radius-open @radius-open 0 0;
   }
 
   &.hidden {
@@ -75,7 +75,7 @@
   justify-content: center;
   align-items: center;
 
-  border-radius: 0 0 @radius @radius;
+  border-radius: 0 0 @radius-open @radius-open;
   padding-bottom: 0.5em;
 
   background-color: @search-bg-color;
@@ -108,6 +108,10 @@
   padding: 6px 0;
   & .searchIconContainer {
     filter: blur(0.5px);
+  }
+
+  &.focused {
+    background-color: rgba(32, 33, 36, 0.16);
   }
 }
 
