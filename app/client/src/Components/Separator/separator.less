@@ -2,21 +2,21 @@
 @separator-size: 90%;
 @separator-margin: 14px;
 @separator-padding: 4px;
-
+@separator-color: #e8eaed;
 
 .separator {
-    border: solid 0 #e8eaed;
+    border: 1px solid transparent;
 }
 
 .horizontal {
-    border-width: @separator-width 0 0 0;
+    border-top-color: @separator-color;
     width: @separator-size;
     margin: 0 @separator-margin;
     padding-bottom: @separator-padding;
 }
 
 .vertical {
-    border-width:  0 @separator-width 0 0;
+    border-right-color: @separator-color;
     height: @separator-size;
     margin: @separator-margin 0;
     padding-right: @separator-padding;

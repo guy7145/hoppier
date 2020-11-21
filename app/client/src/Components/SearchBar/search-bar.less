@@ -82,11 +82,9 @@
   color: @search-fg-color;
   font-size: @font-size;
   font-weight: 500;
-  box-shadow: 0 4px 6px 0 rgba(33, 33, 33, 0.3);
+  box-shadow: 0 4px 6px 0 rgba(33, 33, 33, 0.4);
 
-  transform-origin: bottom;
   &.visible {
-    clip-path: inset(0 0 0 0);
     animation: crop-in-down @fold-time ease-out;
   }
 
@@ -120,6 +118,7 @@
   margin-left: 1em;
 }
 
+//noinspection CssInvalidPseudoSelector
 &:export {
   foldTime: @fold-time
 }
