@@ -1,9 +1,12 @@
 import React, {useState} from "react";
-import styles from './search-bar.less';
+import {useKey} from 'react-use';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import classNames from 'classnames';
 import SearchSuggestions from "./SearchSuggestions";
+import {lessTimeToMilliseconds} from "../../Utils/less";
+
+import styles from './search-bar.less';
 
 
 type SearchBarProps<T> = {
@@ -15,19 +18,18 @@ type SearchBarProps<T> = {
     initSearching?: boolean,
 }
 
+const foldTime = lessTimeToMilliseconds(styles.foldTime);
 
 export default function SearchBar<T>(
     {
         items, getKey, onSelect, onSearchStop=() => {}, visible=true, initSearching=false
     }: SearchBarProps<T>) {
     const [suggestionsOpen, setSuggestionsOpen] = useState(false);
-    const [isSearching, setIsSearching] = useState(false);
+    const [focusedSuggestionIndex] = useState(-1);
     const [value, setValue] = useState('');
 
-    const startSearch = () => setIsSearching(true)
     const stopSearchTimeout = () => {
-        setIsSearching(false);
-        setTimeout(onSearchStop, suggestionsOpen ? 100 : 0)
+        setTimeout(onSearchStop, suggestionsOpen ? foldTime : 0)
     }
 
     return <div className={classNames(
@@ -43,7 +45,6 @@ export default function SearchBar<T>(
                 onChange={ev => setValue(ev.target.value)}
                 className={styles.searchInput}
                 onBlur={stopSearchTimeout}
-                onFocus={startSearch}
                 autoFocus={initSearching}
                 placeholder={'search hops'}
                 onLoadStart={() => value !== '' && setValue('')}
@@ -55,7 +56,6 @@ export default function SearchBar<T>(
             getKey={getKey}
             onExpand={() => setSuggestionsOpen(true)}
             onFold={() => setSuggestionsOpen(false)}
-            isSearching={isSearching}
             onSelect={onSelect}
         />
     </div>;

@@ -31,6 +31,7 @@
     "react-autocomplete": "^1.8.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",
+    "react-use": "^15.3.4",
     "tslib": "^2.0.1"
   },
   "devDependencies": {

@@ -2,13 +2,11 @@
 @import '../../Styles/theme';
 @import '../../Styles/lib';
 
-@search-bg-color: #ffffff;
-@search-fg-color: @background-color;
-@search-icon-color: #9aa0a6;
+
 @radius: 1.25em;
 @font-size: 0.9em;
 @small-font-size: 0.85em;
-@fold-time: .1s;
+@fold-time: 100ms;
 
 
 .searchContainer {
@@ -116,4 +114,8 @@
 .noResults {
   color: mix(@search-fg-color, @search-bg-color, 50%);
   margin-left: 1em;
+}
+
+&:export {
+  foldTime: @fold-time
 }

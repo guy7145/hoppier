@@ -1,17 +1,23 @@
+@separator-width: 1px;
+@separator-size: 90%;
+@separator-margin: 14px;
+@separator-padding: 4px;
+
+
 .separator {
     border: solid 0 #e8eaed;
 }
 
 .horizontal {
-    border-top-width: 1px;
-    width: 90%;
-    margin: 0 14px;
-    padding-bottom: 4px;
+    border-width: @separator-width 0 0 0;
+    width: @separator-size;
+    margin: 0 @separator-margin;
+    padding-bottom: @separator-padding;
 }
 
 .vertical {
-    border-right-width: 1px;
-    height: 90%;
-    margin: 14px 0;
-    padding-right: 4px;
+    border-width:  0 @separator-width 0 0;
+    height: @separator-size;
+    margin: @separator-margin 0;
+    padding-right: @separator-padding;
 }

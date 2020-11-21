@@ -12,7 +12,6 @@ type SuggestedItemsProp<T> = {
     onSelect: (item: T) => void,
     onExpand: () => void,
     onFold: () => void,
-    isSearching: boolean,
 }
 
 export default function SearchSuggestions<T>(
@@ -20,13 +19,12 @@ export default function SearchSuggestions<T>(
         searchQuery,
         items,
         getKey,
-        isSearching,
         onExpand,
         onFold,
         onSelect,
     }: SuggestedItemsProp<T>) {
     searchQuery = searchQuery.toLowerCase().trim();
-    const shouldSuggest = isSearching && searchQuery !== '';
+    const shouldSuggest = searchQuery !== '';
     const suggestions = searchQuery !== '' ? items.filter(item => getKey(item).toLowerCase().includes(searchQuery)) : [];
 
     useEffect(() => shouldSuggest ? onExpand() : onFold(), [shouldSuggest])
