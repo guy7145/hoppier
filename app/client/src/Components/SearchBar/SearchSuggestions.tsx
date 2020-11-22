@@ -53,7 +53,16 @@ export default function SearchSuggestions<T>(
 
     const shouldSuggest = searchQuery !== '';
     const suggestions = searchQuery !== '' ?
-        items.filter(item => getKey(item).toLowerCase().includes(searchQuery)).slice(0, MAX_SUGGESTIONS) : [];
+        items
+            .map(item => ({item, key: getKey(item).toLowerCase()}))
+            .map(indexedItem => ({...indexedItem, index: indexedItem.key.indexOf(searchQuery)}))
+            .filter(indexedItem => indexedItem.index !== -1)
+            .slice(0, MAX_SUGGESTIONS)
+            .map(indexedItem => ({
+                ...indexedItem,
+                keyBefore: indexedItem.key.slice(0, indexedItem.index),
+                keyAfter: indexedItem.key.slice(indexedItem.index + searchQuery.length, indexedItem.key.length),
+            })) : [];
 
     const resetSuggestion = () => setFocusedSuggestionIndex(NO_SUGGESTION_INDEX);
     const incSuggestion = () =>
@@ -75,7 +84,7 @@ export default function SearchSuggestions<T>(
     );
     useKey(
         'Enter',
-        () => focusedSuggestionIndex >= 0 && onSelect(suggestions[focusedSuggestionIndex]),
+        () => focusedSuggestionIndex >= 0 && onSelect(suggestions[focusedSuggestionIndex].item),
         {},
         [focusedSuggestionIndex],
     );
@@ -86,14 +95,13 @@ export default function SearchSuggestions<T>(
 
     return <div className={classNames(
         styles.suggestedItemsContainer,
-        shouldSuggest && styles.visible,
-        !shouldSuggest && styles.foldSuggestions,
+        !shouldSuggest && styles.hidden,
     )}>
         <Separator vertical={false} />
         <div className={styles.suggestedItems}>
             {
                 suggestions.length > 0 ? suggestions.map(
-                    (item, itemIndex) => {
+                    ({item, keyBefore, keyAfter}, itemIndex) => {
                         const key = getKey(item);
                         return <div
                             key={key}
@@ -107,7 +115,9 @@ export default function SearchSuggestions<T>(
                             <div className={styles.searchIconContainer}>
                                 <FontAwesomeIcon className={styles.searchIcon} icon={faSearch}/>
                             </div>
-                            {key}
+                            {keyBefore}
+                            <strong>{searchQuery}</strong>
+                            {keyAfter}
                         </div>
                     }) : <div className={classNames(styles.suggestion, styles.noResults)}>
                     no results found

@@ -1,4 +1,3 @@
-@import '../../Styles/animations';
 @import '../../Styles/theme';
 @import '../../Styles/lib';
 
@@ -27,7 +26,7 @@
   border-radius: @radius-closed;
 
   box-shadow: 0 1px 6px 0 rgba(33, 33, 33, 0.3);
-  transition: all .1s linear 0s, border-radius 0.01s ease-out @fold-time;
+  transition: all .1s linear 0s, border-radius @fold-time ease-out @fold-time;
 
   &.open {
     transition-delay: 0s;
@@ -84,12 +83,10 @@
   font-weight: 500;
   box-shadow: 0 4px 6px 0 rgba(33, 33, 33, 0.4);
 
-  &.visible {
-    animation: crop-in-down @fold-time ease-out;
-  }
+  transition: all @fold-time ease-out;
+  clip-path: inset(-1%);
 
-  &.foldSuggestions {
-    transition: all @fold-time ease-out;
+  &.hidden {
     clip-path: inset(0 0 100% 0);
   }
 }
