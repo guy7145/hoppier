@@ -5,9 +5,13 @@ import Radar from "../../Components/Chart/Radar";
 import HopsList from "../../Components/HopsList/HopsList";
 import getListOperations from "../../Backend/utils";
 
+import {parseLessList} from "../../Utils/less";
+import palettes from "../../Styles/palettes.less";
+
+const colors = parseLessList(palettes.hopsColors);
 
 export default function Explore() {
-    const [hops, setHops] = useState(Hops.hopsList.slice(0, 3));
+    const [hops, setHops] = useState([]);
     const [visibleHops, setVisibleHops] = useState(hops);
 
     const {setItem: setHop, addItem: addHop, removeItem: removeHop} = getListOperations(hops, setHops);
@@ -18,9 +22,25 @@ export default function Explore() {
         showHop(hop);
     };
     const delHopWithVisibility = (hop) => {
+        colors.push(hop.color);
+        delete hop.color;
         removeHop(hop);
         hideHop(hop);
     };
+
+    let changed = false;
+    hops.forEach(hop => {
+        const res = hop;
+        if(!hop['color']) {
+            changed = true;
+            res['color'] = colors.pop();
+        }
+    });
+
+    if (changed) {
+        setHops(hops);
+    }
+
     return <div className={styles.explorePage}>
         <HopsList
             items={hops}

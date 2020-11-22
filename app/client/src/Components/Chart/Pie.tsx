@@ -6,10 +6,19 @@ import {hopCompounds} from "../../../../shared/src/KnowledgeBase/HopComposition"
 import _ from 'lodash';
 
 import styles from './chart.less';
-const GREY_COLOR = {colors: styles.textColorDisabled};
 
 
-export default function Pie({hop, colorful=true}: {hop: Hop, colorful?: boolean}) {
+function getColor(color, colorful) {
+    if (!colorful) {
+        return {colors: styles.textColorDisabled};
+    } else if (color) {
+        return {colors: color};
+    }
+    return {};
+}
+
+
+export default function Pie({hop, color=null, colorful=true}: {hop: Hop, color?: string | null, colorful?: boolean}) {
     const data = _.zipWith(hopCompounds, hopValues(hop, hopCompounds)).map(([comp, val]) => ({
         id: comp,
         value: val,
@@ -24,6 +33,6 @@ export default function Pie({hop, colorful=true}: {hop: Hop, colorful?: boolean}
         cornerRadius={5}
         sortByValue={false}
         isInteractive={false}
-        {...(colorful ? {} : GREY_COLOR)}
+        {...getColor(color, colorful)}
     />;
 }

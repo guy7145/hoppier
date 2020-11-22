@@ -6,3 +6,8 @@ export function lessTimeToMilliseconds(lessTime: string) {
         return Number(lessTime.slice(0, lessTime.length - 1)) * 1000;   // seconds
     }
 }
+
+
+export function parseLessList(value: string): Array<string> {
+    return value.split(', ')
+}

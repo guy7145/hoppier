@@ -4,6 +4,8 @@ import SearchBar from "../../SearchBar/SearchBar";
 import classNames from "classnames";
 
 import styles from './add-item.less';
+import {useKey} from "react-use";
+import {andPreventEventDefault} from "../../../Utils/funcUtils";
 
 
 type AddItemProps<T> = {
@@ -15,7 +17,15 @@ type AddItemProps<T> = {
 
 export default function AddItem<T>({availableItems, getItemTitle, onAddItem}: AddItemProps<T>) {
     const [isSelecting, setIsSelecting] = useState(false);
+    const startSelecting = () => setIsSelecting(true);
     const stopSelecting = () => setIsSelecting(false);
+
+    useKey(
+        '=',
+        isSelecting ? () => {} : andPreventEventDefault(startSelecting),
+        {},
+        [isSelecting]
+    );
 
     return <div className={classNames(styles.addItem, isSelecting && styles.search)}>
         <div className={classNames(styles.animatedContainer, isSelecting ? styles.search : styles.button)}>
@@ -31,7 +41,7 @@ export default function AddItem<T>({availableItems, getItemTitle, onAddItem}: Ad
                     initSearching={true}
                 /> : <div
                     className={styles.addItemButton}
-                    onClick={() => setIsSelecting(true)}
+                    onClick={startSelecting}
                 >+</div>
             }
         </div>

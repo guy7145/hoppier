@@ -5,7 +5,7 @@ import Separator from "../Separator/Separator";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {useKey} from "react-use";
-import {concatFunctions} from "../../Utils/funcUtils";
+import {andPreventEventDefault, concatFunctions} from "../../Utils/funcUtils";
 
 type SuggestedItemsProp<T> = {
     searchQuery: string,
@@ -17,10 +17,6 @@ type SuggestedItemsProp<T> = {
     onEsc: () => void,
 }
 
-const andPreventEventDefault = (f) => ev => {
-    ev.preventDefault();
-    f();
-};
 const MAX_SUGGESTIONS = 5;
 const NO_SUGGESTION_INDEX = -1;
 const FIRST_SUGGESTION_INDEX = 0;

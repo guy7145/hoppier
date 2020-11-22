@@ -36,6 +36,7 @@ export default function HopsList({items, visibleItems, allItems, addItem, delIte
             changeVisibility={() => changeItemVisibility(hop)}
             deleteHop={() => delItem(hop)}
             createSearchBar={createSearchBar(hop)}
+            color={hop['color']}
         />)}
         <AddItem
             key={'add-hop'}

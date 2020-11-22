@@ -14,9 +14,10 @@ type ItemProps = {
     changeVisibility: () => void,
     deleteHop: () => void,
     createSearchBar: (onSearchStop: () => void) => ReactNode,
+    color: string,
 }
 
-export default function Item({hop, isVisible, changeVisibility, deleteHop, createSearchBar}: ItemProps) {
+export default function Item({hop, isVisible, changeVisibility, deleteHop, createSearchBar, color}: ItemProps) {
     const [isSearching, setIsSearching] = useState(false);
 
     return <div className={classNames(styles.itemContainer, !isVisible && styles.hidden)}>
@@ -49,7 +50,7 @@ export default function Item({hop, isVisible, changeVisibility, deleteHop, creat
             </div>
             <div className={styles.chartContainer}>
                 <div className={styles.chartSizeLimiter}>
-                    <Pie hop={hop} colorful={isVisible}/>
+                    <Pie hop={hop} colorful={isVisible} color={color}/>
                 </div>
             </div>
         </div>

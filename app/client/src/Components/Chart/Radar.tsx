@@ -10,7 +10,7 @@ const apexOptions = {
     chart: {
         dropShadow: {
             enabled: true,
-            blur: 1,
+            blur: 0.5,
         },
         toolbar: {
             show: false,
@@ -36,14 +36,6 @@ const apexOptions = {
     },
     legend: {
         show: false,
-        // showForSingleSeries: false,
-        // position: 'left',
-        // labels: {
-        //     colors: 'rgba(188, 245, 232, 0.9)',
-        //     useSeriesColors: true
-        // },
-        // horizontalAlign: 'left',
-        // floating: true,
     },
     dataLabels: {
         enabled: false,
@@ -89,17 +81,22 @@ const apexOptions = {
         enabled: true,
         custom: ({series, seriesIndex, dataPointIndex}) => `${series[seriesIndex][dataPointIndex]}%`,
     },
+    colors: [],
 };
 
 
 export default function Radar({hopsList}) {
-    if (hopsList.length === 1) {
-        hopsList = hopToMinMax(hopsList[0]);
-    }
+    // console.log(hopsList);
+    // console.log(hopsList.map(hop => hop.color));
+    // apexOptions.colors = hopsList.map(hop => hop.color);
+
+    // if (hopsList.length === 1) {
+    //     hopsList = hopToMinMax(hopsList[0]);
+    // }
 
     const series = hopsList.length === 0 ?
         [{name: '', data: hopCompounds.map(() => 0)}] :
-        hopsList.map(hop => ({name: hop.title, data: hopValues(hop, hopCompounds)}));
+        hopsList.map(hop => ({name: hop.title, data: hopValues(hop, hopCompounds), color: hop.color}));
 
     return <div id='chart' className={styles.chartContainer}>
         <ReactApexChart options={apexOptions} series={series} type="radar" height={'100%'} width={'100%'}/>
