@@ -1,6 +1,6 @@
 import {filterHopsWithMissingData, hopCompounds} from "@shared/KnowledgeBase/HopComposition";
 import {readFileSync} from 'fs';
-import _ from 'lodash';
+import _ from 'lodash/math';
 import {mergeDicts} from "../utils/dict";
 import {Hop, HopData} from "@shared/types/hop";
 

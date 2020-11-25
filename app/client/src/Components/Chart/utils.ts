@@ -1,5 +1,5 @@
 import {hopCompounds} from "../../../../shared/src/KnowledgeBase/HopComposition";
-import _ from 'lodash';
+import _ from 'lodash/math';
 
 
 export function hopValues(hop, keys) {

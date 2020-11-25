@@ -1,5 +1,5 @@
-import _ from "lodash";
-import {Hop} from "../types/hop";
+import _ from 'lodash/collection';
+import {Hop} from '../types/hop';
 
 
 const MISSING_PROPERTY = '?';
