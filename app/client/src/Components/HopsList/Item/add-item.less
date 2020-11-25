@@ -1,0 +1,43 @@
+@import '../../../Styles/animations';
+@import '../../../Styles/theme';
+@import '../../../Styles/lib';
+
+@plus-button-size: 2.5em;
+
+.addItem {
+  .center();
+  width: 100%;
+  margin: 0.5em 0;
+
+  &.search {
+    justify-content: flex-start;
+  }
+}
+
+.animatedContainer {
+  .center();
+  margin: 0 5%;
+
+  transition: width .1s ease-out;
+
+  height: @plus-button-size;
+
+  &.button {
+    width: @plus-button-size;
+  }
+
+  &.search {
+    width: 100%;
+  }
+}
+
+.addItemButton {
+  .center();
+  box-sizing: border-box;
+  width: @plus-button-size;
+  height: @plus-button-size;
+  border-radius: 100%;
+  border: @foreground-secondary solid 1px;
+  background-color: @background-color;
+  cursor: pointer;
+}

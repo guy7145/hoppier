@@ -1,23 +1,23 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
-import styles from './chart.less'
-import './apex.global.less'
-import _ from 'lodash';
-import {hopCompounds} from "../../../../../../../shared/src/KnowledgeBase/HopComposition";
+import styles from './chart.less';
+import './apex.global.less';
+import {hopCompounds} from "../../../../shared/src/KnowledgeBase/HopComposition";
+import {hopToMinMax, hopValues} from "./utils";
 
 
 const apexOptions = {
     chart: {
         dropShadow: {
             enabled: true,
-            blur: 1,
+            blur: 0.5,
         },
         toolbar: {
             show: false,
         },
         animations: {
             enabled: true,
-            easing: 'easein',
+            easing: 'easeout',
             speed: 200,
             animateGradually: {
                 enabled: false,
@@ -35,15 +35,7 @@ const apexOptions = {
         fontSize: '20px'
     },
     legend: {
-        show: true,
-        showForSingleSeries: false,
-        position: 'left',
-        labels: {
-            colors: 'rgba(188, 245, 232, 0.9)',
-            useSeriesColors: true
-        },
-        horizontalAlign: 'left',
-        floating: true,
+        show: false,
     },
     dataLabels: {
         enabled: false,
@@ -81,7 +73,7 @@ const apexOptions = {
     },
     yaxis: {
         show: false,
-        tickAmount: 4,
+        tickAmount: 5,
         min: 0,
         max: 100,
     },
@@ -89,40 +81,22 @@ const apexOptions = {
         enabled: true,
         custom: ({series, seriesIndex, dataPointIndex}) => `${series[seriesIndex][dataPointIndex]}%`,
     },
+    colors: [],
 };
 
 
-function hopValues(hop, keys) {
-    return keys
-        .map(k => hop[k])
-        .map(v => Array.isArray(v) ? _.mean(v) : v)
-        .map(v => v === '?' ? 0 : v);
-}
+export default function Radar({hopsList}) {
+    // console.log(hopsList);
+    // console.log(hopsList.map(hop => hop.color));
+    // apexOptions.colors = hopsList.map(hop => hop.color);
 
-
-function hopToMinMax(hop) {
-    const hopMin = {...hop, title: `${hop.title} (min)`};
-    const hopMax = {...hop, title: `${hop.title} (max)`};
-    hopCompounds.forEach((c) => {
-        const value = hop[c];
-        if (Array.isArray(value) && value.length > 1) {
-            hopMin[c] = _.min(value);
-            hopMax[c] = _.max(value);
-        }
-    });
-
-    return [hopMin, hopMax];
-}
-
-
-export default function Chart({hopsList}) {
-    if (hopsList.length === 1) {
-        hopsList = hopToMinMax(hopsList[0]);
-    }
+    // if (hopsList.length === 1) {
+    //     hopsList = hopToMinMax(hopsList[0]);
+    // }
 
     const series = hopsList.length === 0 ?
-        [{name: '', data: hopCompounds.map(() => 0)}] :
-        hopsList.map(hop => ({name: hop.title, data: hopValues(hop, hopCompounds)}));
+        [{name: '', data: hopCompounds.map(() => 0), color: 'ffffff'}] :
+        hopsList.map(hop => ({name: hop.title, data: hopValues(hop, hopCompounds), color: hop.color}));
 
     return <div id='chart' className={styles.chartContainer}>
         <ReactApexChart options={apexOptions} series={series} type="radar" height={'100%'} width={'100%'}/>

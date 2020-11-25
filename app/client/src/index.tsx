@@ -5,4 +5,4 @@ import "./Styles/styles.global.less";
 
 
 const mountNode = document.getElementById("app");
-ReactDOM.render(<App name="BrewDay"/>, mountNode);
+ReactDOM.render(<App name="hoppier"/>, mountNode);

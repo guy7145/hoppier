@@ -40,17 +40,21 @@
 }
 
 .scrollbar(@color) {
-  ::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: 0.5em;
   }
 
-  &:hover ::-webkit-scrollbar-track, &:hover ::-webkit-scrollbar-thumb {
+  &:hover::-webkit-scrollbar-track, &:hover::-webkit-scrollbar-thumb {
     background: fade(@color, 25%);
   }
 
-  ::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-track, &::-webkit-scrollbar-thumb {
     transition: all .8s linear;
     border-radius: 0.25em;
     background: fade(@color, 5%);
+  }
+
+  &::-webkit-scrollbar-corner {
+    visibility: hidden;
   }
 }

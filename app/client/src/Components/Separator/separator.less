@@ -1,0 +1,23 @@
+@separator-width: 1px;
+@separator-size: 90%;
+@separator-margin: 14px;
+@separator-padding: 4px;
+@separator-color: #e8eaed;
+
+.separator {
+    border: 1px solid transparent;
+}
+
+.horizontal {
+    border-top-color: @separator-color;
+    width: @separator-size;
+    margin: 0 @separator-margin;
+    padding-bottom: @separator-padding;
+}
+
+.vertical {
+    border-right-color: @separator-color;
+    height: @separator-size;
+    margin: @separator-margin 0;
+    padding-right: @separator-padding;
+}
