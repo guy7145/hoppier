@@ -5,6 +5,7 @@ import {Hop} from "@shared/types/hop";
 import Item from "./Item/Item";
 import AddItem from "./Item/AddItem";
 import SearchBar from "../SearchBar/SearchBar";
+import {MAX_COMPARED_HOPS} from "../../consts";
 
 
 type HopsListProps = {
@@ -38,11 +39,13 @@ export default function HopsList({items, visibleItems, allItems, addItem, delIte
             createSearchBar={createSearchBar(hop)}
             color={hop['color']}
         />)}
-        <AddItem
-            key={'add-hop'}
-            availableItems={restItems}
-            getItemTitle={getItemTitle}
-            onAddItem={addItem}
-        />
+        {
+            items.length < MAX_COMPARED_HOPS && <AddItem
+                key={'add-hop'}
+                availableItems={restItems}
+                getItemTitle={getItemTitle}
+                onAddItem={addItem}
+            />
+        }
     </div>;
 }

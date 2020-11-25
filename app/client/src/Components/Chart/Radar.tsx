@@ -95,7 +95,7 @@ export default function Radar({hopsList}) {
     // }
 
     const series = hopsList.length === 0 ?
-        [{name: '', data: hopCompounds.map(() => 0)}] :
+        [{name: '', data: hopCompounds.map(() => 0), color: 'ffffff'}] :
         hopsList.map(hop => ({name: hop.title, data: hopValues(hop, hopCompounds), color: hop.color}));
 
     return <div id='chart' className={styles.chartContainer}>

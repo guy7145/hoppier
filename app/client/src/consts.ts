@@ -1,0 +1,1 @@
+export const MAX_COMPARED_HOPS = 6;

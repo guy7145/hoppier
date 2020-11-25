@@ -4,11 +4,20 @@ import Hops from '../../Backend/data';
 import Radar from "../../Components/Chart/Radar";
 import HopsList from "../../Components/HopsList/HopsList";
 import getListOperations from "../../Backend/utils";
+import distinctColors from "distinct-colors";
+import {MAX_COMPARED_HOPS} from "../../consts";
 
-import {parseLessList} from "../../Utils/less";
-import palettes from "../../Styles/palettes.less";
 
-const colors = parseLessList(palettes.hopsColors);
+const palette = distinctColors({
+    count: MAX_COMPARED_HOPS,
+    hueMin: 0,
+    hueMax: 360,
+    lightMin: 45,
+    lightMax: 80,
+    quality: 200,
+    samples: 1000,
+}).map(color => color.hex('rgb'));
+
 
 export default function Explore() {
     const [hops, setHops] = useState([]);
@@ -18,28 +27,16 @@ export default function Explore() {
     const {setItem: setVisibleHop, addItem: showHop, removeItem: hideHop} = getListOperations(visibleHops, setVisibleHops);
     const changeHopVisibility = hop => visibleHops.includes(hop) ? hideHop(hop) : showHop(hop);
     const addHopWithVisibility = (hop) => {
+        hop.color = palette.pop();
         addHop(hop);
         showHop(hop);
     };
     const delHopWithVisibility = (hop) => {
-        colors.push(hop.color);
+        palette.push(hop.color);
         delete hop.color;
         removeHop(hop);
         hideHop(hop);
     };
-
-    let changed = false;
-    hops.forEach(hop => {
-        const res = hop;
-        if(!hop['color']) {
-            changed = true;
-            res['color'] = colors.pop();
-        }
-    });
-
-    if (changed) {
-        setHops(hops);
-    }
 
     return <div className={styles.explorePage}>
         <HopsList
