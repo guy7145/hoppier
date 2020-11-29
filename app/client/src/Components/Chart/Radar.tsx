@@ -2,7 +2,7 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 import styles from './chart.less';
 import './apex.global.less';
-import {hopCompounds} from "../../../../shared/src/KnowledgeBase/HopComposition";
+import {hopCompounds} from "@shared/KnowledgeBase/HopComposition";
 import {hopToMinMax, hopValues} from "./utils";
 
 

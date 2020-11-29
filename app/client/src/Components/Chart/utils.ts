@@ -1,4 +1,4 @@
-import {hopCompounds} from "../../../../shared/src/KnowledgeBase/HopComposition";
+import {hopCompounds} from "@shared/KnowledgeBase/HopComposition";
 import _ from 'lodash/math';
 
 

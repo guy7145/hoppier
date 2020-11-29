@@ -14,9 +14,13 @@
   }
 }
 
+.size(@size) {
+  height: @size;
+  width: @size;
+}
+
 .full-size() {
-  height: 100%;
-  width: 100%;
+  .size(100%);
 }
 
 .center() {

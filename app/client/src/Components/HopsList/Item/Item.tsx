@@ -22,9 +22,9 @@ export default function Item({hop, isVisible, changeVisibility, deleteHop, creat
 
     return <div className={classNames(styles.itemContainer, !isVisible && styles.hidden)}>
         <div className={styles.item}>
-            <div className={styles.hopName}>
+            <div className={styles.hopNameIconContainer}>
                 <img src={hopIcon} className={styles.hopIcon} alt={'hop-icon'}/>
-                {hop.title}
+                <div className={styles.hopName}>{hop.title}</div>
             </div>
             <div className={styles.controllersContainer}>
                 {

@@ -14,9 +14,7 @@ app.get('/data/hop/:hopName', function (req, res) {
     res.json(hopsList[req.params.hopName]);
 });
 
-app.get('/data/mst', function (req, res) {
-
-});
+app.use(express.static('../client/dist/'))
 
 const port = 5000;
 console.log(`listening on port ${port}`);

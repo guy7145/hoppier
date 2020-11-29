@@ -2,7 +2,7 @@ import React from "react";
 import {Hop} from "@shared/types/hop";
 import {ResponsivePie} from "@nivo/pie";
 import {hopValues} from "./utils";
-import {hopCompounds} from "../../../../shared/src/KnowledgeBase/HopComposition";
+import {hopCompounds} from "@shared/KnowledgeBase/HopComposition";
 import _ from 'lodash/array';
 
 import styles from './chart.less';

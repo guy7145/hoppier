@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
 
 const config = {
   entry: [
@@ -113,6 +115,7 @@ const config = {
     ]
   },
   resolve: {
+    plugins: [new TsconfigPathsPlugin()],
     extensions: [
       '.js',
       '.jsx',
@@ -127,8 +130,15 @@ const config = {
     contentBase: './dist'
   },
   plugins: [
-    new LodashModuleReplacementPlugin
-  ]
+    new LodashModuleReplacementPlugin(),
+    new webpack.SourceMapDevToolPlugin({
+      filename: '[name].js.map',
+      exclude: ['vendor.js']
+    })
+  ],
+  optimization: {
+    usedExports: true,
+  },
 };
 
 module.exports = config;
