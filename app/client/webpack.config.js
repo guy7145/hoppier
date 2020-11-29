@@ -138,6 +138,7 @@ const config = {
   ],
   optimization: {
     usedExports: true,
+    minimize: true
   },
 };
 

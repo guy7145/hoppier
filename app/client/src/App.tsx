@@ -9,6 +9,7 @@ import Loading from "./Components/Loading";
 function App({name}: {name: String}) {
     return (
         <DataLoader asyncDataFetcher={Hops.populateData} LoadingComponent={<Loading/>}>
+            <title>{name}</title>
             <Explore/>
         </DataLoader>
     );
