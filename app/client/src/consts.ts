@@ -1,1 +1,1 @@
-export const MAX_COMPARED_HOPS = 6;
+export const MAX_COMPARED_HOPS = 9;

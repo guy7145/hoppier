@@ -1,11 +1,14 @@
 import {hopCompounds} from "@shared/KnowledgeBase/HopComposition";
 import _ from 'lodash/math';
 
+export function compoundValue(v) {
+    return Array.isArray(v) ? _.mean(v) : v;
+}
 
 export function hopValues(hop, keys) {
     return keys
         .map(k => hop.normalized[k])
-        .map(v => Array.isArray(v) ? _.mean(v) : v)
+        .map(compoundValue)
         .map(v => v === '?' ? 0 : v);
 }
 

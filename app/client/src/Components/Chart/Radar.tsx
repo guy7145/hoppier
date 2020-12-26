@@ -3,10 +3,10 @@ import ReactApexChart from "react-apexcharts";
 import styles from './chart.less';
 import './apex.global.less';
 import {hopCompounds} from "@shared/KnowledgeBase/HopComposition";
-import {hopToMinMax, hopValues} from "./utils";
+import {hopValues} from "./utils";
 
 
-const apexOptions = {
+const apexChartOptions = {
     chart: {
         dropShadow: {
             enabled: true,
@@ -43,9 +43,9 @@ const apexOptions = {
     plotOptions: {
         radar: {
             polygons: {
-                strokeColors: 'rgba(80, 55, 165, 0.3)',
+                strokeColors: 'rgba(181, 242, 121, 0.3)',
                 fill: {
-                    colors: ['rgba(88,104,255,0.1)'],
+                    colors: ['rgba(57,64,52,0.4)'],
                 }
             }
         }
@@ -86,9 +86,7 @@ const apexOptions = {
 
 
 export default function Radar({hopsList}) {
-    // console.log(hopsList);
-    // console.log(hopsList.map(hop => hop.color));
-    // apexOptions.colors = hopsList.map(hop => hop.color);
+    apexChartOptions.colors = hopsList.map(hop => hop.color);
 
     // if (hopsList.length === 1) {
     //     hopsList = hopToMinMax(hopsList[0]);
@@ -98,7 +96,8 @@ export default function Radar({hopsList}) {
         [{name: '', data: hopCompounds.map(() => 0), color: 'ffffff'}] :
         hopsList.map(hop => ({name: hop.title, data: hopValues(hop, hopCompounds), color: hop.color}));
 
+
     return <div id='chart' className={styles.chartContainer}>
-        <ReactApexChart options={apexOptions} series={series} type="radar" height={'100%'} width={'100%'}/>
+        <ReactApexChart series={series} height={'100%'} width={'100%'} type={'radar'} options={apexChartOptions}/>
     </div>;
 }

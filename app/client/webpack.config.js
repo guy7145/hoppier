@@ -2,7 +2,9 @@ const webpack = require('webpack');
 const path = require('path');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const clientExportDir = path.resolve(__dirname, 'dist');
 
 const config = {
   entry: [
@@ -10,7 +12,7 @@ const config = {
     './src/index.tsx'
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: clientExportDir,
     filename: 'bundle.js'
   },
   module: {
@@ -40,7 +42,7 @@ const config = {
       },
       {
         test: /\.svg$/,
-        use: 'file-loader'
+        use: ['@svgr/webpack'],
       },
       {
         test: /\.png$/,
@@ -78,9 +80,6 @@ const config = {
             loader: 'less-loader',
             options: {
               javascriptEnabled: true,
-              modifyVars: {
-                // hack: `true; @import '${path.join(__dirname, './src/theme/antdPalette.less')}'`,
-              },
             },
           },
         ],
@@ -89,6 +88,7 @@ const config = {
         test: /\.css$/,
         exclude: /\.global\.css$/,
         use: [
+          MiniCssExtractPlugin.loader,
           'style-loader',
           {
             loader: 'css-loader',
@@ -102,6 +102,7 @@ const config = {
       {
         test: /\.global\.css$/,
         use: [
+          MiniCssExtractPlugin.loader,
           'style-loader',
           {
             loader: 'css-loader',
@@ -123,18 +124,24 @@ const config = {
       '.tsx'
     ],
     alias: {
-      'react-dom': '@hot-loader/react-dom'
+      'react-dom': '@hot-loader/react-dom',
+      '@shared': path.resolve(__dirname, '../shared/dist')
     }
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: clientExportDir,
+    port: 3000,
+    historyApiFallback: {
+      index: 'index.html'
+    }
   },
   plugins: [
     new LodashModuleReplacementPlugin(),
-    new webpack.SourceMapDevToolPlugin({
-      filename: '[name].js.map',
-      exclude: ['vendor.js']
-    })
+    new MiniCssExtractPlugin(),
+    // new webpack.SourceMapDevToolPlugin({
+    //   filename: '[name].js.map',
+    //   exclude: ['vendor.js']
+    // })
   ],
   optimization: {
     usedExports: true,

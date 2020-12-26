@@ -5,7 +5,7 @@ import {Hop} from "@shared/types/hop";
 import Pie from "../../Chart/Pie";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye, faEyeSlash, faSearch, faTimes} from "@fortawesome/free-solid-svg-icons";
-import hopIcon from '../../../Assets/hop-yellow.svg';
+import HopIcon from '../../../Assets/hop-yellow.svg';
 import classNames from "classnames";
 
 type ItemProps = {
@@ -23,7 +23,7 @@ export default function Item({hop, isVisible, changeVisibility, deleteHop, creat
     return <div className={classNames(styles.itemContainer, !isVisible && styles.hidden)}>
         <div className={styles.item}>
             <div className={styles.hopNameIconContainer}>
-                <img src={hopIcon} className={styles.hopIcon} alt={'hop-icon'}/>
+                <HopIcon className={styles.hopIcon}/>
                 <div className={styles.hopName}>{hop.title}</div>
             </div>
             <div className={styles.controllersContainer}>
