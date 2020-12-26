@@ -5,7 +5,7 @@ const app = express();
 
 app.options('*', cors());
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:8080'],
+    origin: 'http://localhost:3000',
 }));
 
 app.get('/data/all-hops', function (req, res) {
@@ -17,7 +17,7 @@ app.get('/data/hop/:hopName', function (req, res) {
     res.json(hopsList[req.params.hopName]);
 });
 
-app.use(express.static('./client-dist'))
+app.use(express.static('../client/dist/'))
 
 const port = 8080;
 console.log(`listening on port ${port}`);
