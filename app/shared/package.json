@@ -5,7 +5,7 @@
     "lodash": "^4.17.20"
   },
   "scripts": {
-    "build:prod": "rimraf ./dist/* && tsc && echo done",
+    "build:prod": "tsc && echo done",
     "build": "npm run build:prod",
     "start:local": "nodemon"
   },
