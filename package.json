@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "hoppier",
   "scripts": {
-    "start": "la -la && npm i --global cross-env && cd app && npm run start"
+    "start": "ls -la && npm i --global cross-env && cd app && npm run start",
+    "deploy": "cd app && npm run deploy"
   },
   "author": "Guy Danielli",
   "license": "ISC"
