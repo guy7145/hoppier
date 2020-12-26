@@ -42,7 +42,15 @@ const config = {
       },
       {
         test: /\.svg$/,
-        use: ['@svgr/webpack'],
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              memo: true,
+              replaceAttrValues: { currentColor: '{props.color}' }
+            }
+          }
+        ],
       },
       {
         test: /\.png$/,
@@ -125,7 +133,7 @@ const config = {
     ],
     alias: {
       'react-dom': '@hot-loader/react-dom',
-      '@shared': path.resolve(__dirname, '../shared/dist')
+      '@shared': path.resolve(__dirname, '../shared/src')
     }
   },
   devServer: {

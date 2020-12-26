@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "cd client && npm install && cd ../server && npm install && cd ../shared && npm install",
-    "build:prod": "cd server && npm run build:prod && cd ../shared && npm run build:prod && cd ../client && npm run build:prod",
+    "build:prod": "cd shared && npm run build:prod && cd ../server && npm run build:prod && cd ../client && npm run build:prod",
     "start:local": "concurrently \"cd client && npm run start:local\" \"cd server && npm run start:local\" \"cd shared && npm run start:local\" --names \"CLIENT,SERVER,SHARED\" -c \"bgBlue.black,bgMagenta.black,bgYellow.black\"",
     "start:prod": "cd server && npm run start:prod",
     "start": "npm run start:prod",

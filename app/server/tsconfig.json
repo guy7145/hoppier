@@ -19,7 +19,9 @@
       "node_modules/@types"
     ],
     "paths": {
-      "@shared/*": ["../shared/src/*"]
+      "@shared/*": [
+        "../shared/src/*"
+      ]
     }
   },
   "include": [
@@ -27,5 +29,10 @@
   ],
   "exclude": [
     "./dist/"
+  ],
+  "references": [
+    {
+      "path": "../shared"
+    }
   ]
 }

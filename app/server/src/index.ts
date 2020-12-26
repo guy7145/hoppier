@@ -1,3 +1,4 @@
+import './alias'; // has to stay on top
 import express from 'express';
 import cors from 'cors';
 import hopsList from './data/hops';

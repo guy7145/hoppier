@@ -1,0 +1,51 @@
+@import '../../Styles/lib';
+@import '../../Styles/theme';
+@import '../../Styles/animations';
+
+@canvas-size: 30em;
+@circle-size: 22em;
+@icon-size: 10em;
+@animation-time: 1.5s;
+
+.loading {
+  .full-size-center();
+  background-color: @background-color;
+}
+
+.canvas {
+  position: relative;
+  .size(30em);
+  .center();
+}
+
+.layer(@index, @size) {
+  .size(@size);
+  margin: (@canvas-size - @size) / 2;
+  position: absolute; top: 0; left: 0;
+  box-sizing: border-box;
+  z-index: @index;
+}
+
+.circle {
+  .layer(0, @circle-size);
+  .center();
+  border-radius: 100%;
+  border: solid 0 @foreground-primary;
+  background-color: transparent;
+  animation: reverse-heartbeat @animation-time infinite ease-in-out, border-wave @animation-time infinite ease-out;
+}
+
+.icon {
+  fill: white;
+  .layer(2, @icon-size);
+  color: @foreground-primary;
+  animation: heartbeat @animation-time infinite;
+  animation-delay: (-@animation-time / 40)s;
+}
+
+@keyframes border-wave {
+  @max-width: .5em;
+  0%    {border-width: @max-width}
+  50%   {border-width: 0}
+  100%  {border-width: @max-width}
+}
