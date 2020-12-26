@@ -20,6 +20,6 @@ app.get('/data/hop/:hopName', function (req, res) {
 
 app.use(express.static('../client/dist/'))
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 console.log(`listening on port ${port}`);
 app.listen(port);

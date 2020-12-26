@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "hoppier",
   "scripts": {
-    "start": "npm run start:prod"
+    "start": "cd app && npm run start:prod"
   },
   "author": "Guy Danielli",
   "license": "ISC"
