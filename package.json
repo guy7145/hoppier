@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "hoppier",
   "scripts": {
-    "start": "npm i --global cross-env && cd app && npm run start:prod",
+    "start": "npm i --global typescript && npm i --global cross-env && cd app && npm run start:prod",
     "build": "cd app && npm run build:prod",
     "deploy": "git push heroku master"
+  },
+  "engines": {
+    "node": "12.x"
   },
   "author": "Guy Danielli",
   "license": "ISC"
