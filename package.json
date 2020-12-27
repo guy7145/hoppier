@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "hoppier",
   "scripts": {
-    "start": "ls -la && ls -la ./app/server && npm i --global cross-env && cd app && npm run start",
-    "deploy": "cd app && npm run deploy"
+    "start": "npm i --global cross-env && cd app && npm run start:prod",
+    "build": "cd app && npm run build:prod",
+    "deploy": "git push heroku master"
   },
   "author": "Guy Danielli",
   "license": "ISC"
