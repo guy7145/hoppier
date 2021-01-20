@@ -5,9 +5,10 @@
     "lodash": "^4.17.20"
   },
   "scripts": {
-    "build:prod": "tsc && echo done",
+    "build:prod": "npm run tsc && echo done",
     "build": "npm run build:prod",
-    "start:local": "nodemon"
+    "start:local": "nodemon",
+    "tsc": "./node_modules/typescript/bin/tsc"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.166",
