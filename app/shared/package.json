@@ -4,14 +4,12 @@
   "dependencies": {
     "lodash": "^4.17.20",
     "tslib": "^2.0.3",
-    "typescript": "^4.1.3",
-    "ts-node": "^8.8.2"
+    "typescript": "^3.9.7"
   },
   "scripts": {
-    "build:prod": "npm run tsc && echo done",
-    "build": "npm run build:prod",
-    "start:local": "nodemon",
-    "tsc": "./node_modules/typescript/bin/tsc"
+    "build:prod": "tsc && echo done",
+    "build": "npm i -g typescript && npm run build:prod",
+    "start:local": "nodemon"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.166",
