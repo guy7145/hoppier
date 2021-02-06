@@ -17,7 +17,6 @@
     "express": "latest",
     "lodash": "^4.17.20",
     "module-alias": "^2.2.2",
-    "npx": "^10.2.2",
     "tslib": "^2.0.3"
   },
   "devDependencies": {
