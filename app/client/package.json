@@ -9,7 +9,6 @@
   "license": "ISC",
   "scripts": {
     "clean": "rm dist/bundle.js",
-    "postinstall": "npm i --dev",
     "build:dev": "webpack -d --mode development",
     "build:prod": "webpack -p --mode production",
     "start:local": "webpack-dev-server --hot --mode development"
