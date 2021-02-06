@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build:prod": "tsc && echo done",
-    "build": "npm i -g typescript && npm run build:prod",
+    "build": "npm run build:prod",
     "start:local": "nodemon"
   },
   "devDependencies": {

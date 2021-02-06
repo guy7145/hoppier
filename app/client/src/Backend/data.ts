@@ -1,7 +1,8 @@
 import Axios from "axios";
-import env from '../Envs/currentEnv';
 import {Hop, HopJson} from "@shared/types/hop";
-const backendUrl = env.backendUrl;
+
+
+const backendUrl = SERVER_URL;
 
 
 async function fetchHop(hopName): Promise<HopJson> {

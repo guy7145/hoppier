@@ -2,8 +2,8 @@ import {env as local} from './CustomEnvironments/local';
 const allEnvs = {
     local,
 };
-const envName = 'local';
-const env = allEnvs[envName];
-console.log(`Env: ${envName}`);
+
+const env = allEnvs[NODE_ENV];
+console.log(`Env: ${NODE_ENV}`);
 console.log(env);
 export default env;
