@@ -4,9 +4,9 @@
   "description": "hoppier",
   "scripts": {
     "start": "npm i --global cross-env && cd app && npm run start:prod",
-    "build": "cd app && npm run build:prod",
+    "build": "cd app && npm run build:client",
     "heroku-prebuild": "npm i --dev",
-    "deploy": "git push heroku master"
+    "deploy": "cd app && npm run build:tsc && cd .. && git push heroku master"
   },
   "engines": {
     "node": "12.x"
