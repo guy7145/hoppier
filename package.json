@@ -4,7 +4,7 @@
   "description": "hoppier",
   "scripts": {
     "start": "cd app && npm run start:prod",
-    "build": "cd app && npm build:prod",
+    "build": "cd app && npm run build:prod",
     "postinstall": "cd app && npm i",
     "heroku-prebuild": "npm i --dev",
     "deploy": "git push heroku master"
