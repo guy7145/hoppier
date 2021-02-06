@@ -43,9 +43,9 @@ const apexChartOptions = {
     plotOptions: {
         radar: {
             polygons: {
-                strokeColors: 'rgba(181, 242, 121, 0.3)',
+                strokeColors: 'rgba(16, 125, 221, 0.4)',
                 fill: {
-                    colors: ['rgba(57,64,52,0.4)'],
+                    colors: ['rgb(5, 27, 53)'],
                 }
             }
         }
@@ -94,8 +94,11 @@ export default function Radar({hopsList}) {
 
     const series = hopsList.length === 0 ?
         [{name: '', data: hopCompounds.map(() => 0), color: 'ffffff'}] :
-        hopsList.map(hop => ({name: hop.title, data: hopValues(hop, hopCompounds), color: hop.color}));
-
+        hopsList.map(hop => ({
+            name: hop.title,
+            data: hopValues(hop, hopCompounds).map(v => Math.round(v)),
+            color: hop.color
+        }));
 
     return <div id='chart' className={styles.chartContainer}>
         <ReactApexChart series={series} height={'100%'} width={'100%'} type={'radar'} options={apexChartOptions}/>

@@ -95,8 +95,10 @@
   background-color: @background-darker;
 
   & > .controller {
+    user-select: none;
     transition: all .1s linear;
     cursor: pointer;
+
     &:hover {
       transform: scale(1.4);
       color: @foreground-primary-bright;
