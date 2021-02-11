@@ -21,7 +21,7 @@
     "@nivo/core": "^0.65.0",
     "@nivo/pie": "^0.65.1",
     "@nivo/radar": "^0.65.1",
-    "apexcharts": "^3.23.0",
+    "apexcharts": "^3.24.0",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "distinct-colors": "^3.0.0",
